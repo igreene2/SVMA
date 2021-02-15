@@ -25,18 +25,18 @@ namespace svma {
             // internal arch state 
             m.NewBvState("base_addr_sv_L", 16);
             m.NewBvState("base_addr_sv_H", 16);
-            m.NewBvState("base_addr_tv_L" , 16);
-            m.NewBvState("base_addr_tv_H" , 16);
-            m.NewBvState("tau" , 16);
-            m.NewBvState("c" , 16);
-            m.NewBvState("b" , 16);
-            m.NewBvState("fv_dim" , 16);
-            m.NewBvState("num_sv" , 16);
-            m.NewBvState("th" , 16);
+            m.NewBvState("base_addr_tv_L", 16);
+            m.NewBvState("base_addr_tv_H", 16);
+            m.NewBvState("tau", 16);
+            m.NewBvState("c", 16);
+            m.NewBvState("b", 16);
+            m.NewBvState("fv_dim", 16);
+            m.NewBvState("num_sv", 16);
+            m.NewBvState("th", 16);
             m.NewBvState("shift1" , 8);
             m.NewBvState("shift2", 8);
             m.NewBvState("shift3", 8);
-            m.NewBvState("cmd_bits" , 16);
+            m.NewBvState("cmd_bits", 16);
 
             // the memory: 160 bytes - how big actually is this?
             m.NewMemState("mem", 16, 64);
@@ -189,7 +189,7 @@ namespace svma {
             auto instr = m.NewInstr("SVM_TH");
             instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01B8)); 
 
-            instr.SetUpdate(m.state("Th"), m.input("data_in"));
+            instr.SetUpdate(m.state("th"), m.input("data_in"));
             
             std::cout << "outside SVM_TH\n";
         }
