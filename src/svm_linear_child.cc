@@ -108,7 +108,7 @@ void DefineLinearChild(Ila& m) {
         auto sub = Sub(temp_sub, m.state("th"));
 
         instr.SetUpdate(m.state("score"), sub);
-        instr.SetUpdate(m.state("output"), Ite(sub > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1));
+        instr.SetUpdate(m.state("output"), Ite(sub > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1)));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
         instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
