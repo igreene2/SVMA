@@ -33,7 +33,7 @@ namespace svma {
             m.NewBvState("fv_dim", 16);
             m.NewBvState("num_sv", 16);
             m.NewBvState("th", 16);
-            m.NewBvState("shift1" , 8);
+            m.NewBvState("shift1", 8);
             m.NewBvState("shift2", 8);
             m.NewBvState("shift3", 8);
             m.NewBvState("cmd_bits", 16);
@@ -191,17 +191,18 @@ namespace svma {
 
             instr.SetUpdate(m.state("th"), m.input("data_in"));
             
-            std::cout << "outside SVM_TH\n";
+            
         }
 
         { // SVM_CMD_STATUS
             std::cout << "inside SVM_CMD_STATUS\n";
             auto instr = m.NewInstr("SVM_CMD_STATUS");
             instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01A0));
-
+            std::cout << "inside SVM_CMD_STATUS\n";
             // child valid bit
             instr.SetUpdate(m.state("run_svma"), SelectBit(m.input("data_in"), 7));
             // child decode bits 
+            std::cout << "inside SVM_CMD_STATUS\n";
             instr.SetUpdate(m.state("interupt_enable"), SelectBit(m.input("data_in"), 6));
             instr.SetUpdate(m.state("reformulation"), SelectBit(m.input("data_in"), 5));
             instr.SetUpdate(m.state("kernel"), Extract(m.input("data_in"), 4, 3));
