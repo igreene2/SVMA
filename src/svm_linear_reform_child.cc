@@ -45,7 +45,7 @@ void DefineLinearReformChild(Ila& m) {
         // If the byte counter > sv dimensionality then dot_op else dot_sum
         // look into == vs >
         instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == m.state("fv_dim"), 
-        BvConst(0, 2), BvConst(1, 2));
+        BvConst(0, 2), BvConst(1, 2)));
 
     }
 
