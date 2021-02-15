@@ -31,7 +31,7 @@ void Define2PolyReformChild(Ila& m) {
     child.AddInit(dot_sum == 0);
     child.AddInit(tv_element_cnt == 0);
     child.AddInit(addr_cnt == 0);
-    child.AddInit(x_tranpose_total == 0);
+    child.AddInit(x_transpose_total == 0);
     child.AddInit(final_sum == 0);
 
     std::cout << "defined all the kiddie state\n";
