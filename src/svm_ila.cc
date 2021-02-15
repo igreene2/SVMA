@@ -204,9 +204,13 @@ namespace svma {
             // child decode bits 
             std::cout << "inside SVM_CMD_STATUS\n";
             instr.SetUpdate(m.state("interupt_enable"), SelectBit(m.input("data_in"), 6));
+            std::cout << "inside SVM_CMD_STATUS\n";
             instr.SetUpdate(m.state("reformulation"), SelectBit(m.input("data_in"), 5));
+            std::cout << "inside SVM_CMD_STATUS\n";
             instr.SetUpdate(m.state("kernel"), Extract(m.input("data_in"), 4, 3));
+            std::cout << "inside SVM_CMD_STATUS\n";
             instr.SetUpdate(m.state("order_poly"), SelectBit(m.input("data_in"), 2));
+            std::cout << "inside SVM_CMD_STATUS\n";
             // can i do stuff with cmd_bits here (above) so as not to do it in each child? 
 
             std::cout << "going to the kiddies\n";
