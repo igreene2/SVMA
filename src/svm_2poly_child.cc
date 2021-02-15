@@ -12,7 +12,7 @@ void Define2PolyChild(Ila& m) {
     auto child = m.NewChild("2Poly");
     auto is_child_valid = (m.state("run_svma") == BvConst(1, 1) 
     & m.state("kernel") == BvConst(1, 2) 
-    & m.state("reformulation") == Bvconst(0, 1)
+    & m.state("reformulation") == BvConst(0, 1)
     & m.state("order_poly") == BvConst(0, 1));
     child.SetValid(is_child_valid);
 
@@ -63,13 +63,13 @@ void Define2PolyChild(Ila& m) {
         auto mult = Mult(tv_data, sv_data);
 
         instr.SetUpdate(dot_sum, dot_sum + mult);
-        instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 16);
-        instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 16);
+        instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 16));
+        instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 16));
 
         // If the byte counter > sv dimensionality then dot_op else dot_sum
         // look into == vs >
         instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == m.state("fv_dim"), 
-        BvConst(2, 2), BvConst(1, 2));
+        BvConst(2, 2), BvConst(1, 2)));
 
     }
 
@@ -79,7 +79,7 @@ void Define2PolyChild(Ila& m) {
         auto instr = child.NewInstr("dot_op");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
-        auto dot_sum_shift = Shift(dot_sum, shift1);
+        auto dot_sum_shift = Shift(dot_sum, m.state("shift1"));
         auto alpha = Load(m.state("mem"), sv_addr + addr_cnt);
         auto c = Sub(dot_sum_shift, m.state("c"));
         auto c_square = Mult(c, c);
@@ -102,7 +102,7 @@ void Define2PolyChild(Ila& m) {
         auto instr = child.NewInstr("child_end");
         instr.SetDecode(m.state("child_state") == BvConst(3, 2));
 
-        auto final_sum_shift = Shift(final_sum, shift2);
+        auto final_sum_shift = Shift(final_sum, m.state("shift2"));
         auto sub_b = Sub(final_sum_shift, m.state("b"));
         auto sub_th = Sub(sub_b, m.state("th"));
 
