@@ -117,6 +117,7 @@ void DefineLinearChild(Ila& m) {
         
 
     }
+}
 
 
 }; // namespace max
