@@ -19,7 +19,7 @@ void DefineRBFChild(Ila& m) {
     auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"))
     auto byte_cnt = child.NewBvState("byte_cnt", 16);
     auto addr_cnt = child.NewBvState("addr_cnt", 16);
-    auto vector_cnt = child.NewBvState("vector_cnt", 16)
+    auto vector_cnt = child.NewBvState("vector_cnt", 16);
     auto dot_sum = child.NewBvState("dot_sum", 16);
     auto final_sum = child.NewBvState("final_sum", 16);
 
@@ -58,12 +58,12 @@ void DefineRBFChild(Ila& m) {
         auto instr = child.NewInstr("dot_sum");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
-        auto tv_data = Load(mem, tv_addr + byte_cnt);
-        auto sv_data = Load(mem, sv_addr + addr_cnt);
+        auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
+        auto sv_data = Load(m.state("mem"), sv_addr + addr_cnt);
 
         auto mult = Sub(sv_data, tv_data);
         auto square = Mult(mult, mult);
-        auto square_shift = Shift(square, shift3);
+        auto square_shift = Shift(square, m.state("shift3"));
 
         instr.SetUpdate(dot_sum, dot_sum + square_shift);
         instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 16));
@@ -84,9 +84,9 @@ void DefineRBFChild(Ila& m) {
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
        
-        auto Ai = Load(mem, sv_addr + addr_cnt);
+        auto Ai = Load(m.state("mem"), sv_addr + addr_cnt);
         auto tau = Mult(dot_sum, m.state("tau"));
-        auto tau_shift = Shift(tau, shift1);
+        auto tau_shift = Shift(tau, m.state("shift1"));
         auto negative = MultbyNegativeOne(tau_shift);
         auto exponent = Exponent(negative);
         auto mult = Mult(Ai, exponent);
@@ -109,12 +109,12 @@ void DefineRBFChild(Ila& m) {
         auto instr = child.NewInstr("child_end");
         instr.SetDecode(m.state("child_state") == BvConst(3, 2));
 
-        auto final_sum_shift = Shift(final_sum, shift2);
+        auto final_sum_shift = Shift(final_sum, m.state("shift2"));
         auto sub_b = Sub(final_sum, m.state("b"));
         auto sub_th = Sub(sub_b, m.state("th"));
 
         instr.SetUpdate(m.state("score"), sub_th);
-        instr.SetUpdate(m.state("output"), Ite(sub_th > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1));
+        instr.SetUpdate(m.state("output"), Ite(sub_th > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1)));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
         instr.setUpdate(m.state("run_svma"), BvConst(0, 1));
