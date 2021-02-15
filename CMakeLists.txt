@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.9.6)
 # PROJECT
 # name version language
 # ---------------------------------------------------------------------------- #
-project(max VERSION 0.1 LANGUAGES CXX)
+project(svma VERSION 0.1 LANGUAGES CXX)
 
 # ---------------------------------------------------------------------------- #
 # VARIABLE
@@ -28,8 +28,13 @@ find_package(ilang REQUIRED)
 # ---------------------------------------------------------------------------- #
 add_executable(${MyTarget} 
   app/main.cc
-  src/max_ila.cc
-  src/max_child.cc
+  src/svm_ila.cc
+  src/svm_linear_child.cc
+  src/svm_linear_reform_child.cc
+  src/svm_rbf_child.cc
+  src/svm_2poly_child.cc
+  src/svm_2poly_reform_child.cc
+  src/svm_4poly_child.cc
 )
 
 target_include_directories(${MyTarget} PRIVATE include)
