@@ -200,12 +200,12 @@ namespace svma {
             instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01A0));
 
             // child valid bit
-            instr.SetUpdate(m.state("run_svma", SelectBit(m.input("data_in"), 7)));
+            instr.SetUpdate(m.state("run_svma"), SelectBit(m.input("data_in"), 7));
             // child decode bits 
-            instr.SetUpdate(m.state("interupt_enable", SelectBit(m.input("data_in"), 6)));
-            instr.SetUpdate(m.state("reformulation", SelectBit(m.input("data_in"), 5)));
-            instr.SetUpdate(m.state("kernel", Extract(m.input("data_in"), 4, 3)));
-            instr.SetUpdate(m.state("order_poly", SelectBit(m.input("data_in"), 2)));
+            instr.SetUpdate(m.state("interupt_enable"), SelectBit(m.input("data_in"), 6));
+            instr.SetUpdate(m.state("reformulation"), SelectBit(m.input("data_in"), 5));
+            instr.SetUpdate(m.state("kernel"), Extract(m.input("data_in"), 4, 3));
+            instr.SetUpdate(m.state("order_poly"), SelectBit(m.input("data_in"), 2));
             // can i do stuff with cmd_bits here (above) so as not to do it in each child? 
 
             std::cout << "going to the kiddies\n";
