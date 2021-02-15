@@ -203,7 +203,7 @@ namespace svma {
             instr.SetUpdate(m.state("run_svma"), SelectBit(m.input("data_in"), 7));
             // child decode bits 
             std::cout << "inside SVM_CMD_STATUS\n";
-            instr.SetUpdate(m.state("interupt_enable"), SelectBit(m.input("data_in"), 6));
+            instr.SetUpdate(m.state("interrupt_enable"), SelectBit(m.input("data_in"), 6));
             std::cout << "inside SVM_CMD_STATUS\n";
             instr.SetUpdate(m.state("reformulation"), SelectBit(m.input("data_in"), 5));
             std::cout << "inside SVM_CMD_STATUS\n";
