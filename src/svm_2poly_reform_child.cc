@@ -18,7 +18,7 @@ void Define2PolyReformChild(Ila& m) {
 
     // create concatenated addresses for sv and tv
     auto sv_addr = Concat(m.state("base_addr_sv_H"), m.state("base_addr_sv_L"));
-    auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"))
+    auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"));
     auto byte_cnt = child.NewBvState("byte_cnt", 16);
     auto final_sum = child.NewBvState("final_sum", 16);
     auto x_transpose_total = child.NewBvState("x_tranpose_total", 16);
@@ -48,8 +48,8 @@ void Define2PolyReformChild(Ila& m) {
         auto instr = child.NewInstr("x_transpose_matrix_multiply");
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
 
-        auto pc_mat_data = Load(mem, sv_addr + addr_cnt);
-        auto tv_data = Load(mem, tv_addr + byte_cnt);
+        auto pc_mat_data = Load(m.state("mem"), sv_addr + addr_cnt);
+        auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
         auto mult  = Mult(pc_mat_data, tv_data);
   
    
@@ -59,7 +59,7 @@ void Define2PolyReformChild(Ila& m) {
         // If the byte counter > sv dimensionality then dot_op else dot_sum
         // look into == vs >
         instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == m.state("fv_dim"), 
-        BvConst(0, 2), BvConst(1, 2));
+        BvConst(0, 2), BvConst(1, 2)));
 
     }
 
@@ -69,8 +69,8 @@ void Define2PolyReformChild(Ila& m) {
         auto instr = child.NewInstr("x_tranpose_reset");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
-        auto x_tt_shift = Shift(x_transpose_total, shift1);
-        auto tv_data = Load(mem, tv_addr + tv_element_cnt);
+        auto x_tt_shift = Shift(x_transpose_total, m.state("shift1"));
+        auto tv_data = Load(m.state("mem"), tv_addr + tv_element_cnt);
         auto mult = Mult(x_tt_shift, tv_data);
      
 
@@ -90,12 +90,12 @@ void Define2PolyReformChild(Ila& m) {
         auto instr = child.NewInstr("child_end");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
-        auto final_sum_shift = Shift(final_sum, shift2);
+        auto final_sum_shift = Shift(final_sum, m.state("shift2"));
         auto sub_b = Sub(final_sum_shift, m.state("b"));
         auto sub_th = Sub(sub_b, m.state("th"));
 
         instr.SetUpdate(m.state("score"), sub_th);
-        instr.SetUpdate(m.state("output"), Ite(sub_th > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1));
+        instr.SetUpdate(m.state("output"), Ite(sub_th > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1)));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
         instr.setUpdate(m.state("run_svma"), BvConst(0, 1));
@@ -104,6 +104,7 @@ void Define2PolyReformChild(Ila& m) {
         
 
     }
+}
 
 }; // namespace max
 
