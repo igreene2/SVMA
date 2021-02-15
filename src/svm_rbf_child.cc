@@ -16,7 +16,7 @@ void DefineRBFChild(Ila& m) {
 
     // create concatenated addresses for sv and tv
     auto sv_addr = Concat(m.state("base_addr_sv_H"), m.state("base_addr_sv_L"));
-    auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"))
+    auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"));
     auto byte_cnt = child.NewBvState("byte_cnt", 16);
     auto addr_cnt = child.NewBvState("addr_cnt", 16);
     auto vector_cnt = child.NewBvState("vector_cnt", 16);
@@ -117,12 +117,13 @@ void DefineRBFChild(Ila& m) {
         instr.SetUpdate(m.state("output"), Ite(sub_th > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1)));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
-        instr.setUpdate(m.state("run_svma"), BvConst(0, 1));
+        instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
    
         // SHIFT? truncation??
         
 
     }
+}
 
 
 }; // namespace max
