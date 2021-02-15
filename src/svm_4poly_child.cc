@@ -20,7 +20,7 @@ void Define4PolyChild(Ila& m) {
     auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"));
     auto byte_cnt = child.NewBvState("byte_cnt", 16);
     auto addr_cnt = child.NewBvState("addr_cnt", 16);
-    auto vector_cnt = child.NewBvState("vector_cnt", 16)
+    auto vector_cnt = child.NewBvState("vector_cnt", 16);
     auto dot_sum = child.NewBvState("dot_sum", 16);
     auto final_sum = child.NewBvState("final_sum", 16);
 
@@ -84,7 +84,7 @@ void Define4PolyChild(Ila& m) {
         auto alpha = Load(m.state("mem"), sv_addr + addr_cnt);
         auto c = Sub(dot_sum_shift, m.state("c"));
         auto c_square = Mult(c, c);
-        auto c_2_shift = Shift(c_square, shift1);
+        auto c_2_shift = Shift(c_square, m.state("shift1"));
         auto c_4 = Mult(c_2_shift, c_2_shift);
         auto mult = Mult(c_4, alpha);
       
