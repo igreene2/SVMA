@@ -180,7 +180,7 @@ namespace svma {
             auto instr = m.NewInstr("SVM_SHIFT3");
             instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01B6));
 
-            instr.SetUpdate(m.state("shift3"), Extract(m.input("data_in"), 0, 7));
+            instr.SetUpdate(m.state("shift3"), Extract(m.input("data_in"), 7, 0));
         }
 
 
