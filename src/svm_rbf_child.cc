@@ -73,7 +73,7 @@ void DefineRBFChild(Ila& m) {
         // look into == vs >
         // probs gonna have to do a signed comparision uninterpreted function, but maybe == is sufficient
         instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == m.state("fv_dim"), 
-        BvConst(2, 2), BvConst(1, 2));
+        BvConst(2, 2), BvConst(1, 2)));
 
     }
 
