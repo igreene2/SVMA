@@ -24,6 +24,7 @@ void Define2PolyReformChild(Ila& m) {
     auto x_transpose_total = child.NewBvState("x_tranpose_total", 16);
     auto tv_element_cnt = child.NewBvState("mem_cnt", 16);
     auto addr_cnt = child.NewBvState("addr_cnt", 16);
+    auto dot_sum = child.NewBvState("dot_sum", 16);
 
 
     child.AddInit(byte_cnt == 0);
@@ -98,7 +99,7 @@ void Define2PolyReformChild(Ila& m) {
         instr.SetUpdate(m.state("output"), Ite(sub_th > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1)));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
-        instr.setUpdate(m.state("run_svma"), BvConst(0, 1));
+        instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
    
         // SHIFT? truncation??
         
