@@ -5,7 +5,7 @@
 ///
 
 #include <ilang/ilang++.h>
-#include <max_ila.h>
+#include <svma_ila.h>
 #include <ilang/util/log.h>
 
 namespace ilang {

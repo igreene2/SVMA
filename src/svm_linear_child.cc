@@ -1,5 +1,5 @@
 #include <ilang/ilang++.h>
-#include <max_ila.h>
+#include <svma_ila.h>
 #include <ilang/util/log.h>
 #include <uninterpreted_func.h>
 

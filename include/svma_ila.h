@@ -7,7 +7,7 @@
 
 
 namespace ilang {
-namespace max {
+namespace svma {
 
 
 Ila GetSVMAIla(const std::string& model_name = "svma");

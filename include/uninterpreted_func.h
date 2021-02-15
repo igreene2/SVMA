@@ -5,14 +5,18 @@
 #include <vector>
 
 namespace ilang {
-namespace max {
+namespace svma {
 
 
-static auto signed_type = SortRef::BV(8);
-static auto comp1 = SortRef::BV(8);
-static auto comp2 = SortRef::BV(8);
+static auto signed_type = SortRef::BV(16);
+static auto comp1 = SortRef::BV(16);
+static auto comp2 = SortRef::BV(16);
 
-static FuncRef Greatest("Greatest", signed_type, comp1, comp2);
+static FuncRef Mult("Mult", signed_type, comp1, comp2);
+static FuncRef Sub("Sub", signed_type, comp1, comp2);
+static FuncRef Exponent("Exponent", signed_type, comp1, comp2);
+static FuncRef MultbyNegativeOne("MultbyNegativeOne", signed_type, comp1, comp2);
+static FuncRef Shift("Shift", signed_type, comp1, comp2);
 
 
 } // namespace ilang

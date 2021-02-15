@@ -1,22 +1,6 @@
 #include <SVMA.h>
 #include <systemc.h>
-#include <ap_int.h>
-#include <nvhls_int.h>
-#include <nvhls_types.h>
-#include <nvhls_vector.h>
-#include <nvhls_module.h>
 
-#include <ac_int.h>
-#include <ac_fixed.h>
-#include <ac_math.h>
-#include <ac_math/ac_sigmoid_pwl.h>
-#include <ac_math/ac_tanh_pwl.h>
-#include <ac_math/ac_div.h>
-#include <ac_math/ac_pow_pwl.h>
-#include <ac_math/ac_inverse_sqrt_pwl.h>
-#include "SM6Spec.h"
-#include "AdpfloatUtils.h"
-#include "AdpfloatSpec.h"
 
 #include <fstream>
 
