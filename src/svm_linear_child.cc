@@ -12,7 +12,7 @@ void DefineLinearChild(Ila& m) {
     auto child = m.NewChild("linear");
     auto is_child_valid = (m.state("run_svma") == BvConst(1, 1) 
     & m.state("kernel") == BvConst(0, 2) 
-    & m.state("reformulation") == Bvconst(0, 1));
+    & m.state("reformulation") == BvConst(0, 1));
     child.SetValid(is_child_valid);
 
     // create concatenated addresses for sv and tv
@@ -20,7 +20,7 @@ void DefineLinearChild(Ila& m) {
     auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"));
     auto addr_cnt = child.NewBvState("addr_cnt", 16);
     auto byte_cnt = child.NewBvState("byte_cnt", 16);
-    auto vector_cnt = child.NewBvState("vector_cnt", 16)
+    auto vector_cnt = child.NewBvState("vector_cnt", 16);
     auto dot_sum = child.NewBvState("dot_sum", 16);
     auto final_sum = child.NewBvState("final_sum", 16);
     auto alpha = child.NewBvState("alpha", 32);
@@ -58,8 +58,8 @@ void DefineLinearChild(Ila& m) {
         auto instr = child.NewInstr("dot_sum");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
-        auto tv_data = Load(mem, tv_addr + byte_cnt);
-        auto sv_data = Load(mem, sv_addr + addr_cnt);
+        auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
+        auto sv_data = Load(m.state("mem"), sv_addr + addr_cnt);
 
         auto mult = Mult(tv_data, sv_data);
 
@@ -82,7 +82,7 @@ void DefineLinearChild(Ila& m) {
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
         
-        auto Ai = Load(mem, sv_addr + addr_cnt);  
+        auto Ai = Load(m.state("mem"), sv_addr + addr_cnt);  
         auto dot_sum_shift = Shift(dot_sum, m.state("shift1"));
         auto mult = Mult(dot_sum_shift, Ai);
       
@@ -102,9 +102,8 @@ void DefineLinearChild(Ila& m) {
     
         std::cout << "inside child_end linear\n";
         auto instr = child.NewInstr("child_end");
-        instr.SetDecode(m.state("child_state") == BvConst(3, 2));
-`       
-        auto final_sum_shift = Shift(final_sum, shift2);
+        instr.SetDecode(m.state("child_state") == BvConst(3, 2));    
+        auto final_sum_shift = Shift(final_sum, m.state("shift2"));
         auto temp_sub = Sub(final_sum_shift, m.state("b"));
         auto sub = Sub(temp_sub, m.state("th"));
 
@@ -112,7 +111,7 @@ void DefineLinearChild(Ila& m) {
         instr.SetUpdate(m.state("output"), Ite(sub > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
-        instr.setUpdate(m.state("run_svma"), BvConst(0, 1));
+        instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
    
 
         

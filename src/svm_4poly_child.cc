@@ -58,8 +58,8 @@ void Define4PolyChild(Ila& m) {
         auto instr = child.NewInstr("dot_sum");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
-        auto tv_data = Load(mem, tv_addr + byte_cnt);
-        auto sv_data = Load(mem, sv_addr + addr_cnt);
+        auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
+        auto sv_data = Load(m.state("mem"), sv_addr + addr_cnt);
 
         auto mult = Mult(tv_data, sv_data);
 
@@ -70,7 +70,7 @@ void Define4PolyChild(Ila& m) {
         // If the byte counter > sv dimensionality then dot_op else dot_sum
         // look into == vs >
         instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == m.state("fv_dim"), 
-        BvConst(2, 2), BvConst(1, 2));
+        BvConst(2, 2), BvConst(1, 2)));
 
     }
 
@@ -81,7 +81,7 @@ void Define4PolyChild(Ila& m) {
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
         auto dot_sum_shift = Shift(dot_sum, shift1);
-        auto alpha = Load(sv_addr + addr_cnt);
+        auto alpha = Load(m.state("mem"), sv_addr + addr_cnt);
         auto c = Sub(dot_sum_shift, m.state("c"));
         auto c_square = Mult(c, c);
         auto c_2_shift = Shift(c_square, shift1);
