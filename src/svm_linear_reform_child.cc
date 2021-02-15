@@ -12,12 +12,12 @@ void DefineLinearReformChild(Ila& m) {
     auto child = m.NewChild("linear_reform");
     auto is_child_valid = (m.state("run_svma") == BvConst(1, 1) 
     & m.state("kernel") == BvConst(0, 2) 
-    & m.state("reformulation") == Bvconst(1, 1));
+    & m.state("reformulation") == BvConst(1, 1));
     child.SetValid(is_child_valid);
 
     // create concatenated addresses for sv and tv
     auto sv_addr = Concat(m.state("base_addr_sv_H"), m.state("base_addr_sv_L"));
-    auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"))
+    auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"));
     auto byte_cnt = child.NewBvState("byte_cnt", 16);
     auto final_sum = child.NewBvState("final_sum", 16);
 
@@ -56,7 +56,7 @@ void DefineLinearReformChild(Ila& m) {
         auto instr = child.NewInstr("child_end");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
-        auto final_sum_shift = Shift(final_sum, shift1);
+        auto final_sum_shift = Shift(final_sum, m.state("shift1"));
         auto minus_b = Sub(final_sum_shift, m.state("b"));
         auto minus_th = Sub(minus_b, m.state("th"));
         
@@ -64,7 +64,7 @@ void DefineLinearReformChild(Ila& m) {
         instr.SetUpdate(m.state("output"), Ite(minus_th > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1)));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
-        instr.setUpdate(m.state("run_svma"), BvConst(0, 1));
+        instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
    
 
         
