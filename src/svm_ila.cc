@@ -191,7 +191,7 @@ namespace svma {
 
             instr.SetUpdate(m.state("Th"), m.input("data_in"));
             
-
+            std::cout << "outside SVM_TH\n";
         }
 
         { // SVM_CMD_STATUS
