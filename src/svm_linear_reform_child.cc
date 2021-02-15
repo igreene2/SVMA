@@ -34,8 +34,8 @@ void DefineLinearReformChild(Ila& m) {
         auto instr = child.NewInstr("pc_sv_sum");
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
 
-        auto pc_sv_data = Load(mem, sv_addr + byte_cnt);
-        auto tv_data = Load(mem, tv_addr + byte_cnt);
+        auto pc_sv_data = Load(m.state("mem"), sv_addr + byte_cnt);
+        auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
         auto mult = Mult(pc_sv_data, tv_data);
 
         instr.SetUpdate(final_sum, final_sum + mult);
@@ -61,7 +61,7 @@ void DefineLinearReformChild(Ila& m) {
         auto minus_th = Sub(minus_b, m.state("th"));
         
         instr.SetUpdate(m.state("score"), minus_th);
-        instr.SetUpdate(m.state("output"), Ite(minus_th > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1));
+        instr.SetUpdate(m.state("output"), Ite(minus_th > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1)));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
         instr.setUpdate(m.state("run_svma"), BvConst(0, 1));
@@ -70,6 +70,7 @@ void DefineLinearReformChild(Ila& m) {
         
 
     }
+}
 
 
 }; // namespace max
