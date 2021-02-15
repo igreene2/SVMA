@@ -4,7 +4,7 @@
 #include <uninterpreted_func.h>
 
 namespace ilang {
-namespace max {
+namespace svma {
 
 
 void DefineLinearReformChild(Ila& m) {

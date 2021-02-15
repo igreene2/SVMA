@@ -4,7 +4,7 @@
 #include <uninterpreted_func.h>
 
 namespace ilang {
-namespace max {
+namespace svma {
 
 
 void Define4PolyChild(Ila& m) {
