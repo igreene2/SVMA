@@ -10,7 +10,7 @@ using namespace ilang;
 int main() {
   SetToStdErr(1);
   // get the ILA model
-  auto svm = svma::GeSVMAIla("svma");
+  auto svm = svma::GetSVMAIla("svma");
   std::cout << "successfully constructed svma model\n";
 
   ILA_INFO << "#instr: " << svm.instr_num();
