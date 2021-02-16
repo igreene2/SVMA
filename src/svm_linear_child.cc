@@ -21,8 +21,8 @@ void DefineLinearChild(Ila& m) {
     auto addr_cnt = child.NewBvState("addr_cnt", 32);
     auto byte_cnt = child.NewBvState("byte_cnt", 32);
     auto vector_cnt = child.NewBvState("vector_cnt", 32);
-    auto dot_sum = child.NewBvState("dot_sum", 16);
-    auto final_sum = child.NewBvState("final_sum", 16);
+    auto dot_sum = child.NewBvState("dot_sum", 32);
+    auto final_sum = child.NewBvState("final_sum", 32);
     auto alpha = child.NewBvState("alpha", 32);
 
     child.AddInit(byte_cnt == 0);
