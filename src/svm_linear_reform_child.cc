@@ -39,7 +39,7 @@ void DefineLinearReformChild(Ila& m) {
         auto mult = Mult(pc_sv_data, tv_data);
 
         instr.SetUpdate(final_sum, final_sum + mult);
-        instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 16));
+        instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
 
 
         // If the byte counter > sv dimensionality then dot_op else dot_sum
@@ -61,7 +61,7 @@ void DefineLinearReformChild(Ila& m) {
         auto minus_th = Sub(minus_b, m.state("th"));
         
         instr.SetUpdate(m.state("score"), minus_th);
-        instr.SetUpdate(m.state("output"), Ite(minus_th > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1)));
+        instr.SetUpdate(m.state("output"), Ite(minus_th > BvConst(0, 32), BvConst(1, 1), BvConst(0, 1)));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
         instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
