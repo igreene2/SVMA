@@ -70,7 +70,7 @@ void Define2PolyReformChild(Ila& m) {
         auto instr = child.NewInstr("x_tranpose_reset");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
-        auto x_tt_shift = Shift(x_transpose_total, Concat(BvConst(0, 24), m.state("shift1"));
+        auto x_tt_shift = Shift(x_transpose_total, Concat(BvConst(0, 24), m.state("shift1")));
         auto tv_data = Load(m.state("mem"), tv_addr + tv_element_cnt);
         auto mult = Mult(x_tt_shift, tv_data);
      
