@@ -19,12 +19,12 @@ void Define2PolyReformChild(Ila& m) {
     // create concatenated addresses for sv and tv
     auto sv_addr = Concat(m.state("base_addr_sv_H"), m.state("base_addr_sv_L"));
     auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"));
-    auto byte_cnt = child.NewBvState("byte_cnt", 16);
-    auto final_sum = child.NewBvState("final_sum", 16);
-    auto x_transpose_total = child.NewBvState("x_tranpose_total", 16);
-    auto tv_element_cnt = child.NewBvState("mem_cnt", 16);
-    auto addr_cnt = child.NewBvState("addr_cnt", 16);
-    auto dot_sum = child.NewBvState("dot_sum", 16);
+    auto byte_cnt = child.NewBvState("byte_cnt", 32);
+    auto final_sum = child.NewBvState("final_sum", 32);
+    auto x_transpose_total = child.NewBvState("x_tranpose_total", 32);
+    auto tv_element_cnt = child.NewBvState("mem_cnt", 32);
+    auto addr_cnt = child.NewBvState("addr_cnt", 32);
+    auto dot_sum = child.NewBvState("dot_sum", 32);
 
 
     child.AddInit(byte_cnt == 0);
@@ -55,8 +55,8 @@ void Define2PolyReformChild(Ila& m) {
   
    
         instr.SetUpdate(x_transpose_total, x_transpose_total + mult);
-        instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 16));
-        instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 16));
+        instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
+        instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
         // If the byte counter > sv dimensionality then dot_op else dot_sum
         // look into == vs >
         instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == m.state("fv_dim"), 
@@ -70,14 +70,14 @@ void Define2PolyReformChild(Ila& m) {
         auto instr = child.NewInstr("x_tranpose_reset");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
-        auto x_tt_shift = Shift(x_transpose_total, m.state("shift1"));
+        auto x_tt_shift = Shift(x_transpose_total, Concat(BvConst(0, 24), m.state("shift1")));
         auto tv_data = Load(m.state("mem"), tv_addr + tv_element_cnt);
         auto mult = Mult(x_tt_shift, tv_data);
      
 
-        instr.SetUpdate(tv_element_cnt, tv_element_cnt + BvConst(1, 16));
+        instr.SetUpdate(tv_element_cnt, tv_element_cnt + BvConst(1, 32));
         instr.SetUpdate(final_sum, final_sum + mult);
-        instr.SetUpdate(byte_cnt, BvConst(0, 16));
+        instr.SetUpdate(byte_cnt, BvConst(0, 32));
         
         // If the vector counter > number of sv then child_end else vector_sum_prep
         instr.SetUpdate(m.state("child_state"), Ite(tv_element_cnt == m.state("fv_dim"), 
@@ -91,12 +91,12 @@ void Define2PolyReformChild(Ila& m) {
         auto instr = child.NewInstr("child_end");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
-        auto final_sum_shift = Shift(final_sum, m.state("shift2"));
+        auto final_sum_shift = Shift(final_sum, Concat(BvConst(0, 24), m.state("shift2")));
         auto sub_b = Sub(final_sum_shift, m.state("b"));
         auto sub_th = Sub(sub_b, m.state("th"));
 
         instr.SetUpdate(m.state("score"), sub_th);
-        instr.SetUpdate(m.state("output"), Ite(sub_th > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1)));
+        instr.SetUpdate(m.state("output"), Ite(sub_th > BvConst(0, 32), BvConst(1, 1), BvConst(0, 1)));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
         instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
