@@ -77,15 +77,16 @@ void DefineLinearChild(Ila& m) {
 
     // dot_op: multiply by Ai, add to final_sum 
     {   
-        std::cout << "inside dot_sum of linear \n";
+        std::cout << "inside dot_op of linear \n";
         auto instr = child.NewInstr("dot_op");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
         
         auto Ai = Load(m.state("mem"), sv_addr + addr_cnt);  
         auto dot_sum_shift = Shift(dot_sum, m.state("shift1"));
+        std::cout << "inside dot_op of linear \n";
         auto mult = Mult(dot_sum_shift, Ai);
-      
+        std::cout << "inside dot_op of linear \n";
         instr.SetUpdate(final_sum, final_sum + mult);
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
         instr.SetUpdate(byte_cnt, BvConst(0, 32));
