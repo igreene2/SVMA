@@ -12,17 +12,17 @@ void Define4PolyChild(Ila& m) {
     auto child = m.NewChild("4Poly");
     auto is_child_valid = (m.state("run_svma") == BvConst(1, 1) 
     & m.state("kernel") == BvConst(1, 2)
-    & m.state("order_poly") == BvConst(1, 0));
+    & m.state("order_poly") == BvConst(1, 1));
     child.SetValid(is_child_valid);
 
     // create concatenated addresses for sv and tv
     auto sv_addr = Concat(m.state("base_addr_sv_H"), m.state("base_addr_sv_L"));
     auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"));
-    auto byte_cnt = child.NewBvState("byte_cnt", 16);
-    auto addr_cnt = child.NewBvState("addr_cnt", 16);
-    auto vector_cnt = child.NewBvState("vector_cnt", 16);
-    auto dot_sum = child.NewBvState("dot_sum", 16);
-    auto final_sum = child.NewBvState("final_sum", 16);
+    auto byte_cnt = child.NewBvState("byte_cnt", 32);
+    auto addr_cnt = child.NewBvState("addr_cnt", 32);
+    auto vector_cnt = child.NewBvState("vector_cnt", 32);
+    auto dot_sum = child.NewBvState("dot_sum", 32);
+    auto final_sum = child.NewBvState("final_sum", 32);
 
     child.AddInit(byte_cnt == 0);
     child.AddInit(addr_cnt == 0);

@@ -70,7 +70,7 @@ void Define2PolyReformChild(Ila& m) {
         auto instr = child.NewInstr("x_tranpose_reset");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
-        auto x_tt_shift = Shift(x_transpose_total, Concat(BvConst(0, 24), m.state("shift1")));
+        auto x_tt_shift = Shift(x_transpose_total, Concat(BvConst(0, 24), m.state("shift1"));
         auto tv_data = Load(m.state("mem"), tv_addr + tv_element_cnt);
         auto mult = Mult(x_tt_shift, tv_data);
      
@@ -90,17 +90,13 @@ void Define2PolyReformChild(Ila& m) {
         std::cout << "inside child_end 2poly reformulated\n";
         auto instr = child.NewInstr("child_end");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
-        std::cout << "inside child_end 2poly reformulated\n";
-        auto final_sum_shift = Shift(final_sum, Concat(BvConst(0, 24), m.state("shift2")));\
-        std::cout << "inside child_end 2poly reformulated\n";
+
+        auto final_sum_shift = Shift(final_sum, Concat(BvConst(0, 24), m.state("shift2")));
         auto sub_b = Sub(final_sum_shift, m.state("b"));
-        std::cout << "inside child_end 2poly reformulated\n";
         auto sub_th = Sub(sub_b, m.state("th"));
-        std::cout << "inside child_end 2poly reformulated\n";
+
         instr.SetUpdate(m.state("score"), sub_th);
-        std::cout << "inside child_end 2poly reformulated\n";
         instr.SetUpdate(m.state("output"), Ite(sub_th > BvConst(0, 32), BvConst(1, 1), BvConst(0, 1)));
-        std::cout << "inside child_end 2poly reformulated\n";
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
         instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
