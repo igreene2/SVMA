@@ -83,7 +83,7 @@ void DefineLinearChild(Ila& m) {
 
         
         auto Ai = Load(m.state("mem"), sv_addr + addr_cnt);  
-        auto dot_sum_shift = Shift(dot_sum, m.state("shift1"));
+        auto dot_sum_shift = Shift(dot_sum, Concat(BvConst(0, 8), m.state("shift1")));
         std::cout << "inside dot_op of linear \n";
         auto mult = Mult(dot_sum_shift, Ai);
         std::cout << "inside dot_op of linear \n";
