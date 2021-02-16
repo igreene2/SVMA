@@ -102,12 +102,12 @@ void DefineLinearChild(Ila& m) {
         std::cout << "inside child_end linear\n";
         auto instr = child.NewInstr("child_end");
         instr.SetDecode(m.state("child_state") == BvConst(3, 2));    
-        auto final_sum_shift = Shift(final_sum, Concat(BvConst(0, 8), m.state("shift2")));
+        auto final_sum_shift = Shift(final_sum, Concat(BvConst(0, 24), m.state("shift2")));
         auto temp_sub = Sub(final_sum_shift, m.state("b"));
         auto sub = Sub(temp_sub, m.state("th"));
 
         instr.SetUpdate(m.state("score"), sub);
-        instr.SetUpdate(m.state("output"), Ite(sub > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1)));
+        instr.SetUpdate(m.state("output"), Ite(sub > BvConst(0, 32), BvConst(1, 1), BvConst(0, 1)));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
         instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
