@@ -57,7 +57,7 @@ void DefineLinearChild(Ila& m) {
         std::cout << "inside dot_sum linear\n";
         auto instr = child.NewInstr("dot_sum");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
-
+        std::cout << "inside dot_sum linear\n";     
         auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
         auto sv_data = Load(m.state("mem"), sv_addr + addr_cnt);
         std::cout << "inside dot_sum linear\n";
