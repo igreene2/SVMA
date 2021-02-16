@@ -27,12 +27,12 @@ namespace svma {
             m.NewBvState("base_addr_sv_H", 16);
             m.NewBvState("base_addr_tv_L", 16);
             m.NewBvState("base_addr_tv_H", 16);
-            m.NewBvState("tau", 16);
-            m.NewBvState("c", 16);
-            m.NewBvState("b", 16);
+            m.NewBvState("tau", 32);
+            m.NewBvState("c", 32);
+            m.NewBvState("b", 32);
             m.NewBvState("fv_dim", 32);
             m.NewBvState("num_sv", 32);
-            m.NewBvState("th", 16);
+            m.NewBvState("th", 32);
             m.NewBvState("shift1", 8);
             m.NewBvState("shift2", 8);
             m.NewBvState("shift3", 8);
