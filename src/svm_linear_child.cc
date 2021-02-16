@@ -65,7 +65,7 @@ void DefineLinearChild(Ila& m) {
 
         instr.SetUpdate(dot_sum, dot_sum + mult);
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
-        instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32);
+        instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
 
         // If the byte counter > sv dimensionality then dot_op else dot_sum
         // look into == vs >
