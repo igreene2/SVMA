@@ -39,7 +39,7 @@ namespace svma {
             m.NewBvState("cmd_bits", 16);
 
             // the memory: 160 bytes - how big actually is this?
-            m.NewMemState("mem", 16, 64);
+            m.NewMemState("mem", 32, 64);
 
             // the output
             m.NewBvState("score", 32); 
