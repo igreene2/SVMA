@@ -18,8 +18,8 @@ void DefineLinearReformChild(Ila& m) {
     // create concatenated addresses for sv and tv
     auto sv_addr = Concat(m.state("base_addr_sv_H"), m.state("base_addr_sv_L"));
     auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"));
-    auto byte_cnt = child.NewBvState("byte_cnt", 16);
-    auto final_sum = child.NewBvState("final_sum", 16);
+    auto byte_cnt = child.NewBvState("byte_cnt", 32);
+    auto final_sum = child.NewBvState("final_sum", 32);
 
     child.AddInit(byte_cnt == 0);
 
