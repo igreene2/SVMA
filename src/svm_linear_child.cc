@@ -84,9 +84,7 @@ void DefineLinearChild(Ila& m) {
         
         auto Ai = Load(m.state("mem"), sv_addr + addr_cnt);  
         auto dot_sum_shift = Shift(dot_sum, Concat(BvConst(0, 8), m.state("shift1")));
-        std::cout << "inside dot_op of linear \n";
         auto mult = Mult(dot_sum_shift, Ai);
-        std::cout << "inside dot_op of linear \n";
         instr.SetUpdate(final_sum, final_sum + mult);
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
         instr.SetUpdate(byte_cnt, BvConst(0, 32));
@@ -104,7 +102,7 @@ void DefineLinearChild(Ila& m) {
         std::cout << "inside child_end linear\n";
         auto instr = child.NewInstr("child_end");
         instr.SetDecode(m.state("child_state") == BvConst(3, 2));    
-        auto final_sum_shift = Shift(final_sum, m.state("shift2"));
+        auto final_sum_shift = Shift(final_sum, Concat(BvConst(0, 8), m.state("shift2")));
         auto temp_sub = Sub(final_sum_shift, m.state("b"));
         auto sub = Sub(temp_sub, m.state("th"));
 
