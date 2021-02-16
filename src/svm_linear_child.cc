@@ -83,7 +83,7 @@ void DefineLinearChild(Ila& m) {
 
         
         auto Ai = Load(m.state("mem"), sv_addr + addr_cnt);  
-        auto dot_sum_shift = Shift(dot_sum, Concat(BvConst(0, 8), m.state("shift1")));
+        auto dot_sum_shift = Shift(dot_sum, Concat(BvConst(0, 24), m.state("shift1")));
         auto mult = Mult(dot_sum_shift, Ai);
         instr.SetUpdate(final_sum, final_sum + mult);
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
