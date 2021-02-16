@@ -43,8 +43,8 @@ void DefineLinearChild(Ila& m) {
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
         std::cout << "inside vector_sum_prep past decode\n";
         
-        instr.SetUpdate(vector_cnt, vector_cnt + BvConst(1, 16));
-        instr.SetUpdate(dot_sum, BvConst(0, 1));
+        instr.SetUpdate(vector_cnt, vector_cnt + BvConst(1, 32));
+        instr.SetUpdate(dot_sum, BvConst(0, 16));
 
         std::cout << "inside vector_sum_prep past updates\n";   
         // move to dot_sum
@@ -64,8 +64,8 @@ void DefineLinearChild(Ila& m) {
         auto mult = Mult(tv_data, sv_data);
 
         instr.SetUpdate(dot_sum, dot_sum + mult);
-        instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 16));
-        instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 16));
+        instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
+        instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32);
 
         // If the byte counter > sv dimensionality then dot_op else dot_sum
         // look into == vs >
@@ -87,8 +87,8 @@ void DefineLinearChild(Ila& m) {
         auto mult = Mult(dot_sum_shift, Ai);
       
         instr.SetUpdate(final_sum, final_sum + mult);
-        instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 16));
-        instr.SetUpdate(byte_cnt, BvConst(0, 16));
+        instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
+        instr.SetUpdate(byte_cnt, BvConst(0, 32));
       
         
         // If the vector counter > number of sv then child_end else vector_sum_prep
