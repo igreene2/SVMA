@@ -30,8 +30,8 @@ namespace svma {
             m.NewBvState("tau", 16);
             m.NewBvState("c", 16);
             m.NewBvState("b", 16);
-            m.NewBvState("fv_dim", 16);
-            m.NewBvState("num_sv", 16);
+            m.NewBvState("fv_dim", 32);
+            m.NewBvState("num_sv", 32);
             m.NewBvState("th", 16);
             m.NewBvState("shift1", 8);
             m.NewBvState("shift2", 8);
