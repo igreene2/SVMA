@@ -19,11 +19,11 @@ void Define2PolyChild(Ila& m) {
     // create concatenated addresses for sv and tv
     auto sv_addr = Concat(m.state("base_addr_sv_H"), m.state("base_addr_sv_L"));
     auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"));
-    auto byte_cnt = child.NewBvState("byte_cnt", 16);
-    auto vector_cnt = child.NewBvState("vector_cnt", 16);
-    auto addr_cnt = child.NewBvState("addr_cnt", 16);
-    auto dot_sum = child.NewBvState("dot_sum", 16);
-    auto final_sum = child.NewBvState("final_sum", 16);
+    auto byte_cnt = child.NewBvState("byte_cnt", 32);
+    auto vector_cnt = child.NewBvState("vector_cnt", 32);
+    auto addr_cnt = child.NewBvState("addr_cnt", 32);
+    auto dot_sum = child.NewBvState("dot_sum", 32);
+    auto final_sum = child.NewBvState("final_sum", 32);
 
 
     child.AddInit(byte_cnt == 0);
@@ -42,8 +42,8 @@ void Define2PolyChild(Ila& m) {
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
         std::cout << "inside vector_sum_prep 2poly past decode\n";
         
-        instr.SetUpdate(vector_cnt, vector_cnt + BvConst(1, 16));
-        instr.SetUpdate(dot_sum, BvConst(0, 16));
+        instr.SetUpdate(vector_cnt, vector_cnt + BvConst(1, 32));
+        instr.SetUpdate(dot_sum, BvConst(0, 32));
 
         std::cout << "inside vector_sum_prep 2poly past updates\n";   
         // move to dot_sum
@@ -63,8 +63,8 @@ void Define2PolyChild(Ila& m) {
         auto mult = Mult(tv_data, sv_data);
 
         instr.SetUpdate(dot_sum, dot_sum + mult);
-        instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 16));
-        instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 16));
+        instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
+        instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
 
         // If the byte counter > sv dimensionality then dot_op else dot_sum
         // look into == vs >
@@ -79,13 +79,13 @@ void Define2PolyChild(Ila& m) {
         auto instr = child.NewInstr("dot_op");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
-        auto dot_sum_shift = Shift(dot_sum, m.state("shift1"));
+        auto dot_sum_shift = Shift(dot_sum, Concat(BvConst(0, 24), m.state("shift1")));
         auto alpha = Load(m.state("mem"), sv_addr + addr_cnt);
         auto c = Sub(dot_sum_shift, m.state("c"));
         auto c_square = Mult(c, c);
         auto mult = Mult(c_square, alpha);
        
-        instr.SetUpdate(byte_cnt, BvConst(0, 16));
+        instr.SetUpdate(byte_cnt, BvConst(0, 32));
         instr.SetUpdate(final_sum, final_sum + mult);
  
         
@@ -102,12 +102,12 @@ void Define2PolyChild(Ila& m) {
         auto instr = child.NewInstr("child_end");
         instr.SetDecode(m.state("child_state") == BvConst(3, 2));
 
-        auto final_sum_shift = Shift(final_sum, m.state("shift2"));
+        auto final_sum_shift = Shift(final_sum, Concat(BvConst(0, 24), m.state("shift2")));
         auto sub_b = Sub(final_sum_shift, m.state("b"));
         auto sub_th = Sub(sub_b, m.state("th"));
 
         instr.SetUpdate(m.state("score"), sub_th);
-        instr.SetUpdate(m.state("output"), Ite(sub_th > BvConst(0, 16), BvConst(1, 1), BvConst(0, 1)));
+        instr.SetUpdate(m.state("output"), Ite(sub_th > BvConst(0, 32), BvConst(1, 1), BvConst(0, 1)));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
         instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
