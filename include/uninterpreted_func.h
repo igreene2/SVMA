@@ -8,9 +8,9 @@ namespace ilang {
 namespace svma {
 
 
-static auto signed_type = SortRef::BV(16);
-static auto comp1 = SortRef::BV(16);
-static auto comp2 = SortRef::BV(16);
+static auto signed_type = SortRef::BV(32);
+static auto comp1 = SortRef::BV(32);
+static auto comp2 = SortRef::BV(32);
 
 static FuncRef Mult("Mult", signed_type, comp1, comp2);
 static FuncRef Sub("Sub", signed_type, comp1, comp2);
