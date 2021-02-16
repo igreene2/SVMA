@@ -39,7 +39,7 @@ namespace svma {
             m.NewBvState("cmd_bits", 16);
 
             // the memory: 160 bytes - how big actually is this?
-            m.NewMemState("mem", 16, 64);
+            m.NewMemState("mem", 32, 64);
 
             // the output
             m.NewBvState("score", 32); 
@@ -198,19 +198,19 @@ namespace svma {
             std::cout << "inside SVM_CMD_STATUS\n";
             auto instr = m.NewInstr("SVM_CMD_STATUS");
             instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01A0));
-            std::cout << "inside SVM_CMD_STATUS\n";
+
             // child valid bit
             instr.SetUpdate(m.state("run_svma"), SelectBit(m.input("data_in"), 7));
             // child decode bits 
-            std::cout << "inside SVM_CMD_STATUS\n";
+
             instr.SetUpdate(m.state("interrupt_enable"), SelectBit(m.input("data_in"), 6));
-            std::cout << "inside SVM_CMD_STATUS\n";
+
             instr.SetUpdate(m.state("reformulation"), SelectBit(m.input("data_in"), 5));
-            std::cout << "inside SVM_CMD_STATUS\n";
+
             instr.SetUpdate(m.state("kernel"), Extract(m.input("data_in"), 4, 3));
-            std::cout << "inside SVM_CMD_STATUS\n";
+           
             instr.SetUpdate(m.state("order_poly"), SelectBit(m.input("data_in"), 2));
-            std::cout << "inside SVM_CMD_STATUS\n";
+         
             // can i do stuff with cmd_bits here (above) so as not to do it in each child? 
 
             std::cout << "going to the kiddies\n";

@@ -60,7 +60,7 @@ void DefineLinearChild(Ila& m) {
 
         auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
         auto sv_data = Load(m.state("mem"), sv_addr + addr_cnt);
-
+        std::cout << "inside dot_sum linear\n";
         auto mult = Mult(tv_data, sv_data);
 
         instr.SetUpdate(dot_sum, dot_sum + mult);
