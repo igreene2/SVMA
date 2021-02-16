@@ -35,11 +35,15 @@ void DefineLinearReformChild(Ila& m) {
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
 
         auto pc_sv_data = Load(m.state("mem"), sv_addr + byte_cnt);
+         std::cout << "inside pc_sv_sum linear reform\n";
         auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
+         std::cout << "inside pc_sv_sum linear reform\n";
         auto mult = Mult(pc_sv_data, tv_data);
 
         instr.SetUpdate(final_sum, final_sum + mult);
+         std::cout << "inside pc_sv_sum linear reform\n";
         instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
+         std::cout << "inside pc_sv_sum linear reform\n";
 
 
         // If the byte counter > sv dimensionality then dot_op else dot_sum
