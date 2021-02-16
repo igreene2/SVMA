@@ -56,11 +56,11 @@ void DefineLinearReformChild(Ila& m) {
     // child_end: take the sign of the result in final_sum and set the score, set child to invalid
     {
     
-        std::cout << "inside child_end linear\n";
+        std::cout << "inside child_end linear reform\n";
         auto instr = child.NewInstr("child_end");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
-        auto final_sum_shift = Shift(final_sum, m.state("shift1"));
+        auto final_sum_shift = Shift(final_sum, Concat(BvConst(0, 24), m.state("shift1")));
         auto minus_b = Sub(final_sum_shift, m.state("b"));
         auto minus_th = Sub(minus_b, m.state("th"));
         
