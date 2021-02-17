@@ -76,7 +76,7 @@ void Define4PolyChild(Ila& m) {
 
     // dot_op: add c to dot_sum, square it, get beta squared*Ai, multiply that by dot_sum, subtract b and Th 
     {   
-        std::cout << "inside dot_sum of poly4 \n";
+        std::cout << "inside dot_sop of poly4 \n";
         auto instr = child.NewInstr("dot_op");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
@@ -84,7 +84,7 @@ void Define4PolyChild(Ila& m) {
         auto alpha = Load(m.state("mem"), sv_addr + addr_cnt);
         auto c = Sub(dot_sum_shift, m.state("c"));
         auto c_square = Mult(c, c);
-        auto c_2_shift = Shift(c_square, m.state("shift1"));
+        auto c_2_shift = Shift(c_square, Concat(BvConst(0, 24), m.state("shift1")));
         auto c_4 = Mult(c_2_shift, c_2_shift);
         auto mult = Mult(c_4, alpha);
       
