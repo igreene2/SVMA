@@ -31,7 +31,7 @@ void DefineLinearReformChild(Ila& m) {
     // pc_sv_sum: load bytes from pc_sv and tv and multiply together and add to final_sum
     {
         std::cout << "inside pc_sv_sum linear reform\n";
-        auto instr = child.NewInstr("pc_sv_sum");
+        auto instr = child.NewInstr("pc_sv_sum_linear_reform");
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
 
         auto pc_sv_data = Load(m.state("mem"), sv_addr + byte_cnt);

@@ -38,7 +38,7 @@ void Define2PolyChild(Ila& m) {
 
     { // vector_sum_prep: increment vector counter and reset dot_sum
         std::cout << "inside vector_sum_prep 2poly\n";
-        auto instr = child.NewInstr("vector_sum_prep");
+        auto instr = child.NewInstr("vector_sum_prep_poly2");
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
         std::cout << "inside vector_sum_prep 2poly past decode\n";
         
@@ -54,7 +54,7 @@ void Define2PolyChild(Ila& m) {
     // dot_sum: load bytes from each vector, multiply thme and add them to dot_sum
     {
         std::cout << "inside dot_sum 2poly\n";
-        auto instr = child.NewInstr("dot_sum");
+        auto instr = child.NewInstr("dot_sum_poly2");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
         auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
@@ -76,7 +76,7 @@ void Define2PolyChild(Ila& m) {
     // dot_op: add c to dot_sum, square it, get beta squared*Ai, multiply that by dot_sum, subtract b and Th 
     {   
         std::cout << "inside dot_sum of 2poly \n";
-        auto instr = child.NewInstr("dot_op");
+        auto instr = child.NewInstr("dot_op_poly2");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
         auto dot_sum_shift = Shift(dot_sum, Concat(BvConst(0, 24), m.state("shift1")));

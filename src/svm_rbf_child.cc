@@ -39,7 +39,7 @@ void DefineRBFChild(Ila& m) {
 
     { // vector_sub_prep: increment vector counter and reset dot_sum
         std::cout << "inside vector_sub_prep rbf\n";
-        auto instr = child.NewInstr("vector_sum_prep");
+        auto instr = child.NewInstr("vector_sum_prep_rbf");
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
         std::cout << "inside vector_sub_prep rbf past decode\n";
         
@@ -55,7 +55,7 @@ void DefineRBFChild(Ila& m) {
     // dot_sum: load bytes from each vector, subtract tv from sv, square that and add to dot_sum
     {
         std::cout << "inside dot_sum rbf\n";
-        auto instr = child.NewInstr("dot_sum");
+        auto instr = child.NewInstr("dot_sum_rbf");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
         auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
@@ -79,7 +79,7 @@ void DefineRBFChild(Ila& m) {
     // dot_op: multiply by -tau, exponentiate, mult by Ai
     {   
         std::cout << "inside dot_op of rbf \n";
-        auto instr = child.NewInstr("dot_op");
+        auto instr = child.NewInstr("dot_op_rbf");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
        

@@ -39,7 +39,7 @@ void DefineLinearChild(Ila& m) {
 
     { // vector_sum_prep: increment vector counter and reset dot_sum
         std::cout << "inside vector_sum_prep linear\n";
-        auto instr = child.NewInstr("vector_sum_prep");
+        auto instr = child.NewInstr("vector_sum_prep_linear");
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
         std::cout << "inside vector_sum_prep past decode\n";
         
@@ -55,7 +55,7 @@ void DefineLinearChild(Ila& m) {
     // dot_sum: load bytes from each vector, multiply thme and add them to dot_sum
     {
         std::cout << "inside dot_sum linear\n";
-        auto instr = child.NewInstr("dot_sum");
+        auto instr = child.NewInstr("dot_sum_linear");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
         std::cout << "inside dot_sum linear\n";     
         auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
@@ -78,7 +78,7 @@ void DefineLinearChild(Ila& m) {
     // dot_op: multiply by Ai, add to final_sum 
     {   
         std::cout << "inside dot_op of linear \n";
-        auto instr = child.NewInstr("dot_op");
+        auto instr = child.NewInstr("dot_op_linear");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
         

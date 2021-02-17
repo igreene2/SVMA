@@ -46,7 +46,7 @@ void Define2PolyReformChild(Ila& m) {
     // x_tranpose_matrix_multiply: load matrix and tv element, multipy, add to x_transpose_total
     {
         std::cout << "inside x_tranpose_matrix_mulitply poly reform\n";
-        auto instr = child.NewInstr("x_transpose_matrix_multiply");
+        auto instr = child.NewInstr("x_transpose_matrix_multiply_poly2_reform");
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
 
         auto pc_mat_data = Load(m.state("mem"), sv_addr + addr_cnt);
@@ -67,7 +67,7 @@ void Define2PolyReformChild(Ila& m) {
     // x_transpose_reset: multiply x_total by element of tv and add to final_sum
     {   
         std::cout << "inside x_transpose_reset of 2poly reformulated \n";
-        auto instr = child.NewInstr("x_tranpose_reset");
+        auto instr = child.NewInstr("x_tranpose_reset_poly2_reform");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
         auto x_tt_shift = Shift(x_transpose_total, Concat(BvConst(0, 24), m.state("shift1")));
