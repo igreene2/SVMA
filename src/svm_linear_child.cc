@@ -100,7 +100,7 @@ void DefineLinearChild(Ila& m) {
     {
     
         std::cout << "inside child_end linear\n";
-        auto instr = child.NewInstr("child_end");
+        auto instr = child.NewInstr("child_end_linear");
         instr.SetDecode(m.state("child_state") == BvConst(3, 2));    
         auto final_sum_shift = Shift(final_sum, Concat(BvConst(0, 24), m.state("shift2")));
         auto temp_sub = Sub(final_sum_shift, m.state("b"));

@@ -105,7 +105,7 @@ void DefineRBFChild(Ila& m) {
     {
     
         std::cout << "inside child_end rbf\n";
-        auto instr = child.NewInstr("child_end");
+        auto instr = child.NewInstr("child_end_rbf");
         instr.SetDecode(m.state("child_state") == BvConst(3, 2));
 
         auto final_sum_shift = Shift(final_sum, Concat(BvConst(0, 24), m.state("shift2")));

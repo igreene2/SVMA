@@ -88,7 +88,7 @@ void Define2PolyReformChild(Ila& m) {
     // child_end: take the sign of the result in final_sum and set the score, set child to invalid
     {
         std::cout << "inside child_end 2poly reformulated\n";
-        auto instr = child.NewInstr("child_end");
+        auto instr = child.NewInstr("child_end_2poly_reform");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
         auto final_sum_shift = Shift(final_sum, Concat(BvConst(0, 24), m.state("shift2")));

@@ -57,7 +57,7 @@ void DefineLinearReformChild(Ila& m) {
     {
     
         std::cout << "inside child_end linear reform\n";
-        auto instr = child.NewInstr("child_end");
+        auto instr = child.NewInstr("child_end_linear_reform");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
 
         auto final_sum_shift = Shift(final_sum, Concat(BvConst(0, 24), m.state("shift1")));
