@@ -14,8 +14,8 @@ static auto comp2 = SortRef::BV(32);
 
 static FuncRef Mult("Mult", signed_type, comp1, comp2);
 static FuncRef Sub("Sub", signed_type, comp1, comp2);
-static FuncRef Exponent("Exponent", signed_type, comp1, comp2);
-static FuncRef MultbyNegativeOne("MultbyNegativeOne", signed_type, comp1, comp2);
+static FuncRef Exponent("Exponent", signed_type, comp1);
+static FuncRef MultbyNegativeOne("MultbyNegativeOne", signed_type, comp1);
 static FuncRef Shift("Shift", signed_type, comp1, comp2);
 
 

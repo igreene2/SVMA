@@ -60,11 +60,8 @@ void DefineRBFChild(Ila& m) {
 
         auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
         auto sv_data = Load(m.state("mem"), sv_addr + addr_cnt);
-        std::cout << "inside dot_sum rbf\n";
         auto mult = Sub(sv_data, tv_data);
-        std::cout << "inside dot_sum rbf\n";
-        auto square = Mult(mult, mult);
-        std::cout << "inside dot_sum rbf\n";
+        auto square = Mult(mult, mult);      
         auto square_shift = Shift(square, Concat(BvConst(0, 24), m.state("shift3")));
 
         instr.SetUpdate(dot_sum, dot_sum + square_shift);
@@ -81,7 +78,7 @@ void DefineRBFChild(Ila& m) {
 
     // dot_op: multiply by -tau, exponentiate, mult by Ai
     {   
-        std::cout << "inside dot_sum of rbf \n";
+        std::cout << "inside dot_op of rbf \n";
         auto instr = child.NewInstr("dot_op");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
