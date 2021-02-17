@@ -19,8 +19,8 @@ namespace svma {
             // inputs
             // 0 - read, 1 - write
             m.NewBvInput("mode", 1); // do i need this?
-            m.NewBvInput("addr_in", 16);
-            m.NewBvInput("data_in", 16);
+            m.NewBvInput("addr_in", 32);
+            m.NewBvInput("data_in", 32);
 
             // internal arch state 
             m.NewBvState("base_addr_sv_L", 16);
