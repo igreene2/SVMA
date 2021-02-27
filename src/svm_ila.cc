@@ -69,7 +69,7 @@ namespace svma {
             auto instr = m.NewInstr("SVM_SV_BASEADDR_H");
             instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01A2));
 
-            instr.SetUpdate(m.state("base_addr_sv_H"), m.input("data_in")); // update a start_addr
+            instr.SetUpdate(m.state("base_addr_sv_H"), Extract(m.input("data_in"), 15, 7)); // update a start_addr
 
             
 
@@ -81,7 +81,7 @@ namespace svma {
             auto instr = m.NewInstr("SVM_SV_BASEADDR_L");
             instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01A4)); 
 
-            instr.SetUpdate(m.state("base_addr_sv_L"), m.input("data_in"));
+            instr.SetUpdate(m.state("base_addr_sv_L"), Extract(m.input("data_in"), 7, 0));
             
 
         }
@@ -92,7 +92,7 @@ namespace svma {
             auto instr = m.NewInstr("SVM_TV_BASEADDR_H");
             instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01A6)); 
 
-            instr.SetUpdate(m.state("base_addr_tv_H"), m.input("data_in"));
+            instr.SetUpdate(m.state("base_addr_tv_H"), Extract(m.input("data_in"), 15, 7));
             
 
         }
@@ -102,7 +102,7 @@ namespace svma {
             auto instr = m.NewInstr("SVM_TV_BASEADDR_L");
             instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01A8)); 
 
-            instr.SetUpdate(m.state("base_addr_tv_L"), m.input("data_in"));
+            instr.SetUpdate(m.state("base_addr_tv_L"), Extract(m.input("data_in"), 7, 0));
             
 
         }
