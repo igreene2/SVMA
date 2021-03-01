@@ -15,7 +15,7 @@ sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
 
   float res = f1 * f2;
   
-  sc_bigint<32> result_s = res.to_int();
+  sc_bigint<32> result_s = *(int*)&res;
   sc_biguint<32> result = result_s;
 }
 
@@ -41,15 +41,14 @@ sc_biguint<32> SVMA::Exponent(sc_biguint<32> exponent) {
 
   float res = powf(f2, f1);
   
-  sc_bigint<32> result_s = res.to_int();
+  sc_bigint<32> result_s = *(int*)&res;
   sc_biguint<32> result = result_s;
 
   return result;
 }
 
 sc_biguint<32> SVMA::Shift(sc_biguint<32> base, sc_biguint<32> shiftamt) {
-  int arg_0_int = arg_0.to_int();
-  int arg_1_int = arg_1.to_int();
+  
 
   int base_shift = base >> shiftamt;
   sc_biguint<32> result = base_shift;
