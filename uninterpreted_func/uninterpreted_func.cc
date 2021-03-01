@@ -52,7 +52,7 @@ sc_biguint<32> SVMA::Shift(sc_biguint<32> base, sc_biguint<32> shiftamt) {
   sc_bigint<32> base_s = base;
   sc_bigint<32> shiftamt_s = shiftamt;  
 
-  int base_shift = base_s >> shiftamt_s;
+  sc_bigint<32> base_shift = base_s >> shiftamt_s;
   sc_biguint<32> result = base_shift;
 
   return result;
