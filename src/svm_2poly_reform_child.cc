@@ -7,9 +7,9 @@ namespace ilang {
 namespace svma {
 
 
-void Define2PolyReformChild(Ila& m) {
+void DefineTwoPolyReformChild(Ila& m) {
   
-    auto child = m.NewChild("2poly_reform");
+    auto child = m.NewChild("Twopoly_reform");
     auto is_child_valid = (m.state("run_svma") == BvConst(1, 1) 
     & m.state("kernel") == BvConst(1, 2) 
     & m.state("reformulation") == BvConst(1, 1)

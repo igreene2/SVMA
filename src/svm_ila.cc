@@ -216,9 +216,9 @@ namespace svma {
             std::cout << "going to the kiddies\n";
             DefineLinearChild(m);
             DefineLinearReformChild(m);
-            Define2PolyChild(m);
-            Define2PolyReformChild(m);
-            Define4PolyChild(m);
+            DefineTwoPolyChild(m);
+            DefineTwoPolyReformChild(m);
+            DefineFourPolyChild(m);
             DefineRBFChild(m);
 
        
