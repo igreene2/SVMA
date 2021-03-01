@@ -14,9 +14,9 @@ Ila GetSVMAIla(const std::string& model_name = "svma");
 
 void DefineLinearChild(Ila& m);
 void DefineLinearReformChild(Ila& m);
-void Define2PolyChild(Ila& m);
-void Define2PolyReformChild(Ila& m);
-void Define4PolyChild(Ila& m);
+void DefineTwoPolyChild(Ila& m);
+void DefineTwoPolyReformChild(Ila& m);
+void DefineFourPolyChild(Ila& m);
 void DefineRBFChild(Ila& m);
 
 }; // namespace max
