@@ -49,8 +49,10 @@ sc_biguint<32> SVMA::Exponent(sc_biguint<32> exponent) {
 
 sc_biguint<32> SVMA::Shift(sc_biguint<32> base, sc_biguint<32> shiftamt) {
   
+  sc_bigint<32> base_s = base;
+  sc_bigint<32> shiftamt_s = shiftamt;  
 
-  int base_shift = base >> shiftamt;
+  int base_shift = base_s >> shiftamt_s;
   sc_biguint<32> result = base_shift;
 
   return result;
@@ -62,7 +64,7 @@ sc_biguint<32> SVMA::MultbyNegativeOne(sc_biguint<32> mult1) {
   sc_bigint<32> arg2 = -1;
 
   sc_bigint<32> out = arg1 * arg2;
-  sc_biguint<32> result = result_s;
+  sc_biguint<32> result = out;
 
   return result;
 }
