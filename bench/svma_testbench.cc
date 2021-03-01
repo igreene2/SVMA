@@ -13,7 +13,7 @@ SC_MODULE(Source) {
   sc_in<bool> clk{"clk"};
 
   sc_out< sc_biguint<32> > SVMA_data_in;
-  sc_out< bool > SVMA_mode;
+  sc_out< sc_biguint<1> > SVMA_mode;
   sc_out< sc_biguint<32> > SVMA_addr_in;
 
   sc_out < sc_biguint<1> > input_done;
@@ -62,7 +62,7 @@ SC_MODULE(testbench) {
 
   sc_clock clk;
 
-  sc_signal< bool > SVMA_mode_sig;
+  sc_signal< sc_biguint<1> > SVMA_mode_sig;
   sc_signal< sc_biguint<32> > SVMA_data_in_sig;
   sc_signal< sc_biguint<32> > SVMA_addr_in_sig;
 
