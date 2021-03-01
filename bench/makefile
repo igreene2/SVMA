@@ -37,4 +37,4 @@ uninterpreted_func.o: uninterpreted_func.cc $(SVMA_SIM_DIR)/include/*
 	$(CC) $(CFLAGS_SVMA) -c uninterpreted_func.cc -o uninterpreted_func.o $(LIBS)
 
 svma_testbench.out : uninterpreted_func.o conv_testbench.cc $(SVMA_MODEL_DIR)/*.o $(SVMA_SIM_DIR)/include/*.h
-	$(CC) $(CFLAGS_SVMA) conv_testbench.cc uninterpreted_func.o $(SVMA_MODEL_DIR)/*.o -o conv_testbench.out $(LIBS)
+	$(CC) $(CFLAGS_SVMA) svmsa_testbench.cc uninterpreted_func.o $(SVMA_MODEL_DIR)/*.o -o svma_testbench.out $(LIBS)
