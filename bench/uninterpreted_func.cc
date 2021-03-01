@@ -10,8 +10,8 @@ sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
   sc_bigint<32> arg1 = mult1.to_int();
   sc_bigint<32> arg2 = mult2.to_int();
 
-  float f1 = (*(float*))&arg1);
-  float f2 = (*(float*))&arg2);
+  float f1 = (*(float*)&arg1);
+  float f2 = (*(float*)&arg2);
 
   float res = f1 * f2;
   
@@ -36,7 +36,7 @@ sc_biguint<32> SVMA::Exponent(sc_biguint<32> exponent) {
 
   sc_bigint<32> arg1 = exponent.to_int();
 
-  float f1 = (*(float*))&arg1);
+  float f1 = (*(float*)&arg1);
   float f2 = (2.7182818284590452353602874713527);
 
   float res = powf(f2, f1);
