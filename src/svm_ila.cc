@@ -60,7 +60,7 @@ namespace svma {
             // remember to write back done and output to the address in cmd instruction!
         
             std::cout << "declared all the state\n";
-            m.SetValid(m.input("addr_in") > 0x01A0 & m.input("addr_in") < 0x01BA);
+            m.SetValid(m.input("addr_in") > 0x0000 & m.input("addr_in") < 0x01BA);
             std::cout << "did the valid\n";
 
 
