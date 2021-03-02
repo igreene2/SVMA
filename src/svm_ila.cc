@@ -60,7 +60,7 @@ namespace svma {
             // remember to write back done and output to the address in cmd instruction!
         
             std::cout << "declared all the state\n";
-            m.SetValid(m.input("addr_in") > 0x0000 & m.input("addr_in") < 0x01BA);
+            m.SetValid(m.input("addr_in") > 0x0000 & m.input("addr_in") < 0x01C2);
             std::cout << "did the valid\n";
 
 
@@ -228,7 +228,7 @@ namespace svma {
         { // SVM_STORE_DATA
             std::cout << "inside STORE_DATA\n";
             auto instr = m.NewInstr("STORE_DATA");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") != 0x01BA));
+            instr.SetDecode((m.input("mode") == 1));
 
             auto update_memory_at_addrin = Store(m.state("mem"), m.input("addr_in"), m.input("data_in"));
             instr.SetUpdate(m.state("mem"), update_memory_at_addrin);
