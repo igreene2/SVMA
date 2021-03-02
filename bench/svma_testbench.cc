@@ -41,11 +41,11 @@ SC_MODULE(Source) {
 
     // pass the command to the ports
     for (int i = 0; i < cmd_seq["program fragment"].size(); i++) {
-      SVMA_mode = std::stoi(cmd_seq["program fragment"][i]["mode"].get<std::string>(), nullptr, 32);
+      SVMA_mode = std::stoi(cmd_seq["program fragment"][i]["mode"].get<std::string>(), nullptr, 16);
       std::string addr = cmd_seq["program fragment"][i]["addr"].get<std::string>();
-      SVMA_addr_in = std::stoi(addr, nullptr, 32);
+      SVMA_addr_in = std::stoi(addr, nullptr, 16);
       // extract each data byte from data
-      SVMA_data_in = std::stoi(cmd_seq["program fragment"][i]["data"].get<std::string>(), nullptr, 32);
+      SVMA_data_in = std::stoi(cmd_seq["program fragment"][i]["data"].get<std::string>(), nullptr, 16);
      
       wait(10, SC_NS);
     }
