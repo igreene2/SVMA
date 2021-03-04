@@ -12,8 +12,8 @@ sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
 
   sc_bigint<32> res = arg1 * arg2;
   
-  sc_bigint<32> result_s = res;
-  sc_biguint<32> result = result_s;
+  sc_biguint<32> result = res;
+  return result;
 }
 
 sc_biguint<32> SVMA::Sub(sc_biguint<32> sub1, sc_biguint<32> sub2) {
