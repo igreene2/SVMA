@@ -10,12 +10,9 @@ sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
   sc_bigint<32> arg1 = mult1.to_int();
   sc_bigint<32> arg2 = mult2.to_int();
 
-  float f1 = (*(float*)&arg1);
-  float f2 = (*(float*)&arg2);
-
-  float res = f1 * f2;
+  sc_bigint<32> res = f1 * f2;
   
-  sc_bigint<32> result_s = *(int*)&res;
+  sc_bigint<32> result_s = res;
   sc_biguint<32> result = result_s;
 }
 
