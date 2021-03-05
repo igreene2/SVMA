@@ -111,7 +111,7 @@ SC_MODULE(testbench) {
     svma_inst.instr_log.close();
     std::cout << "result: " << std::endl;
     std::cout << svma_inst.SVMA_output << std::endl;
-    std::cout << svma_inst.SVMA_score;
+    std::cout << svma_inst.SVMA_score << std::endl;
 
 
 	
