@@ -43,7 +43,7 @@ void DefineRBFChild(Ila& m) {
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
         std::cout << "inside vector_sum_prep rbf past decode\n";
         
-        instr.SetUpdate(vector_cnt, vector_cnt + BvConst(0, 32));
+        instr.SetUpdate(vector_cnt, vector_cnt + BvConst(1, 32));
         instr.SetUpdate(dot_sum, BvConst(0, 32));
         instr.SetUpdate(byte_cnt, BvConst(0, 32));
 
