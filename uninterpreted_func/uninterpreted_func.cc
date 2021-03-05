@@ -70,7 +70,7 @@ sc_biguint<32> SVMA::Greatest(sc_biguint<32> comp1, sc_biguint<32> comp2) {
   
   sc_bigint<32> comp1_s = comp1;
   sc_bigint<32> comp2_s = comp2;
-  sc_bigint<32> out = (comp1_s > comp2_s) ? comp_1 : comp_2;
+  sc_bigint<32> out = (comp1_s > comp2_s) ? 1 : 0;
   sc_biguint<32> result = out;
   return result;
 
