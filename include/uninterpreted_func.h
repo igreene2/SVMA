@@ -17,6 +17,7 @@ static FuncRef Sub("Sub", signed_type, comp1, comp2);
 static FuncRef Exponent("Exponent", signed_type, comp1);
 static FuncRef MultbyNegativeOne("MultbyNegativeOne", signed_type, comp1);
 static FuncRef Shift("Shift", signed_type, comp1, comp2);
+static FuncRef Greatest("Greatest", signed_type, comp1, comp1);
 
 
 } // namespace ilang

@@ -28,3 +28,7 @@ sc_biguint<32> SVMA::MultbyNegativeOne(sc_biguint<32> mult1) {
 sc_biguint<32> SVMA::Shift(sc_biguint<32> base, sc_biguint<32> shiftamt) {
   return 0;
 }
+
+sc_biguint<32> SVMA::Greatest(sc_biguint<32> arg1, sc_biguint<32> arg2) {
+  return 0;
+}

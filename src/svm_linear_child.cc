@@ -44,7 +44,7 @@ void DefineLinearChild(Ila& m) {
         std::cout << "inside vector_sum_prep past decode\n";
         
         instr.SetUpdate(vector_cnt, vector_cnt + BvConst(1, 32));
-        instr.SetUpdate(dot_sum, BvConst(0, 16));
+        instr.SetUpdate(dot_sum, BvConst(0, 32));
 
         std::cout << "inside vector_sum_prep past updates\n";   
         // move to dot_sum
@@ -107,7 +107,7 @@ void DefineLinearChild(Ila& m) {
         auto sub = Sub(temp_sub, m.state("th"));
 
         instr.SetUpdate(m.state("score"), sub);
-        instr.SetUpdate(m.state("output"), Ite(sub > BvConst(0, 32), BvConst(1, 1), BvConst(0, 1)));
+        instr.SetUpdate(m.state("output"), Ite(Greatest(sub, BvConst(0, 32)), BvConst(1, 1), BvConst(0, 1)));
         instr.SetUpdate(m.state("done"), BvConst(0, 2));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
         instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
