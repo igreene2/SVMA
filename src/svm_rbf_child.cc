@@ -38,15 +38,16 @@ void DefineRBFChild(Ila& m) {
     // assume something exists called sv_addr and tv_addr
 
     { // vector_sub_prep: increment vector counter and reset dot_sum
-        std::cout << "inside vector_sub_prep rbf\n";
+        std::cout << "inside vector_sum_prep rbf\n";
         auto instr = child.NewInstr("vector_sum_prep_rbf");
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
-        std::cout << "inside vector_sub_prep rbf past decode\n";
+        std::cout << "inside vector_sum_prep rbf past decode\n";
         
         instr.SetUpdate(vector_cnt, vector_cnt + BvConst(0, 32));
         instr.SetUpdate(dot_sum, BvConst(0, 32));
+        instr.SetUpdate(byte_cnt, BvConst(0, 32));
 
-        std::cout << "inside vector_sub_prep rbf past updates\n";   
+        std::cout << "inside vector_sum_prep rbf past updates\n";   
         // move to dot_sum
         instr.SetUpdate(m.state("child_state"), BvConst(1, 2));
 
