@@ -112,6 +112,7 @@ SC_MODULE(testbench) {
     std::cout << "result: " << std::endl;
     std::cout << svma_inst.SVMA_output << std::endl;
     std::cout << svma_inst.SVMA_score << std::endl;
+    std::cout << svma_inst.linear_final_sum << std::endl;
 
 
 	
