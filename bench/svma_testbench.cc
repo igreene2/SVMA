@@ -95,6 +95,7 @@ SC_MODULE(testbench) {
 
   void run() {
     svma_inst.instr_log.open("./sim_info/instr_log_svma.txt", ofstream::out | ofstream::trunc);
+    svma_inst.instr_update_log.open("./sim_info/instr_update.log", ios::out | ios::trunc);
 
     std::cout << "start running" << std::endl;
     std::cout << "*********** simulation start ***********" << std::endl;
