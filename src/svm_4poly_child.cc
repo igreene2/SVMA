@@ -76,7 +76,7 @@ void DefineFourPolyChild(Ila& m) {
 
     // dot_op: add c to dot_sum, square it, get beta squared*Ai, multiply that by dot_sum, subtract b and Th 
     {   
-        std::cout << "inside dot_sop of poly4 \n";
+        std::cout << "inside dot_op of poly4 \n";
         auto instr = child.NewInstr("dot_op_4poly");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
