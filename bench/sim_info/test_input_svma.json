@@ -369,7 +369,7 @@
         {
             "_instr_No.": 61,
             "addr": "0x000001AA",
-            "data": "0x00011C36",
+            "data": "0xffffffff",
             "mode": "1"
         },
         {

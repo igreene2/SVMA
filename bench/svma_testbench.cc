@@ -110,6 +110,7 @@ SC_MODULE(testbench) {
     std::cout << '\n' << std::endl;
     std::cout << "************* sc_stop **************" << std::endl;
     svma_inst.instr_log.close();
+    // make this more readable
     std::cout << "result: " << std::endl;
     std::cout << svma_inst.SVMA_output << std::endl;
     std::cout << svma_inst.SVMA_score << std::endl;
@@ -117,7 +118,7 @@ SC_MODULE(testbench) {
 
 
 	
-    std::cout << "\ntestbench passed" << std::endl;
+    std::cout << "\ntestbench done" << std::endl;
 
     sc_stop();
   }
