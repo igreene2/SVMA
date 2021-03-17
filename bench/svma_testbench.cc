@@ -33,7 +33,7 @@ SC_MODULE(Source) {
     input_done = 0;
     // read program fragment from file
     std::ifstream fin;
-    fin.open("./sim_info/test_input_svma.json", ios::in);
+    fin.open("./sim_info/test_input_svma_linprec.json", ios::in);
     
     //parse the json file
     json cmd_seq;
@@ -111,10 +111,10 @@ SC_MODULE(testbench) {
     std::cout << "************* sc_stop **************" << std::endl;
     svma_inst.instr_log.close();
     // make this more readable
-    std::cout << "result: " << std::endl;
+    std::cout << "output: " << std::endl;
     std::cout << svma_inst.SVMA_output << std::endl;
+    std::cout << "score: " << std::endl;
     std::cout << svma_inst.SVMA_score << std::endl;
-    std::cout << svma_inst.linear_final_sum << std::endl;
 
 
 	
