@@ -78,6 +78,7 @@ void DefineTwoPolyReformChild(Ila& m) {
         instr.SetUpdate(tv_element_cnt, tv_element_cnt + BvConst(1, 32));
         instr.SetUpdate(final_sum, final_sum + mult);
         instr.SetUpdate(byte_cnt, BvConst(0, 32));
+        instr.SetUpdate(x_transpose_total, BvConst(0, 32));
         
         // If the vector counter > number of sv then child_end else vector_sum_prep
         instr.SetUpdate(m.state("child_state"), Ite(tv_element_cnt == m.state("fv_dim"), 
