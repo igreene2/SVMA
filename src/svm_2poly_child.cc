@@ -86,6 +86,7 @@ void DefineTwoPolyChild(Ila& m) {
         auto mult = Mult(c_square, alpha);
        
         instr.SetUpdate(byte_cnt, BvConst(0, 32));
+        instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32)); 
         instr.SetUpdate(final_sum, final_sum + mult);
  
         
