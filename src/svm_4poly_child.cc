@@ -82,7 +82,8 @@ void DefineFourPolyChild(Ila& m) {
 
         auto dot_sum_shift = Shift(dot_sum, Concat(BvConst(0, 24), m.state("shift1")));
         auto alpha = Load(m.state("mem"), sv_addr + addr_cnt);
-        auto c = Sub(dot_sum_shift, m.state("c"));
+        auto neg_c = MultbyNegativeOne(m.state("c"));
+        auto c = Sub(dot_sum_shift, neg_c);
         auto c_square = Mult(c, c);
         auto c_2_shift = Shift(c_square, Concat(BvConst(0, 24), m.state("shift1")));
         auto c_4 = Mult(c_2_shift, c_2_shift);
