@@ -59,7 +59,7 @@ void DefineTwoPolyReformChild(Ila& m) {
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
         // If the byte counter > sv dimensionality then dot_op else dot_sum
         // look into == vs >
-        instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == m.state("fv_dim"), 
+        instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == (m.state("fv_dim") - 1), 
         BvConst(1, 2), BvConst(0, 2)));
 
     }
@@ -81,7 +81,7 @@ void DefineTwoPolyReformChild(Ila& m) {
         instr.SetUpdate(x_transpose_total, BvConst(0, 32));
         
         // If the vector counter > number of sv then child_end else vector_sum_prep
-        instr.SetUpdate(m.state("child_state"), Ite(tv_element_cnt == m.state("fv_dim"), 
+        instr.SetUpdate(m.state("child_state"), Ite(tv_element_cnt == (m.state("fv_dim") - 1), 
         BvConst(2, 2), BvConst(0, 2)));
 
     }
