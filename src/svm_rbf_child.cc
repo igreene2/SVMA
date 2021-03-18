@@ -115,7 +115,7 @@ void DefineRBFChild(Ila& m) {
 
         instr.SetUpdate(m.state("score"), sub_th);
         instr.SetUpdate(m.state("output"), Ite((Greatest(sub_th, BvConst(0, 32)) == 1), BvConst(1, 1), BvConst(0, 1)));
-        instr.SetUpdate(m.state("done"), BvConst(0, 2));
+        instr.SetUpdate(m.state("done"), BvConst(1, 1));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
         instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
    
