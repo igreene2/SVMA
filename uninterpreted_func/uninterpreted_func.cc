@@ -32,13 +32,12 @@ sc_biguint<32> SVMA::Sub(sc_biguint<32> sub1, sc_biguint<32> sub2) {
 sc_biguint<32> SVMA::Exponent(sc_biguint<32> exponent) {
 
   sc_bigint<32> arg1 = exponent.to_int();
+  double arg0 = arg1;
 
-  float f1 = (*(float*)&arg1);
-  float f2 = (2.7182818284590452353602874713527);
-
-  float res = powf(f2, f1);
+  // need exponent to be double
+  double res = exp(arg0);
   
-  sc_bigint<32> result_s = *(int*)&res;
+  sc_bigint<32> result_s = res;
   sc_biguint<32> result = result_s;
 
   return result;
