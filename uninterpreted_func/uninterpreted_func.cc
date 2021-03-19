@@ -32,7 +32,7 @@ sc_biguint<32> SVMA::Sub(sc_biguint<32> sub1, sc_biguint<32> sub2) {
 sc_biguint<32> SVMA::Exponent(sc_biguint<32> exponent) {
 
   sc_bigint<32> arg1 = exponent.to_int();
-  double arg0 = arg1;
+  double arg0 = arg1.to_double();
 
   // need exponent to be double
   double res = exp(arg0);
