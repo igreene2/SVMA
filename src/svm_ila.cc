@@ -92,7 +92,7 @@ namespace svma {
             auto instr = m.NewInstr("SVM_TV_BASEADDR_H");
             instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05A6)); 
 
-            instr.SetUpdate(m.state("base_addr_tv_H"), Extract(m.input("data_in"), 15, 7));
+            instr.SetUpdate(m.state("base_addr_tv_H"), Extract(m.input("data_in"), 15, 8));
             
 
         }
