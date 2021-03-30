@@ -18,7 +18,7 @@ void DefineLinearChild(Ila& m) {
     // create concatenated addresses for sv and tv
     auto sv_addr = Concat(m.state("base_addr_sv_H"), m.state("base_addr_sv_L"));
     auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"));
-    auto tv_test = child.newBvState("tv", 32);
+    auto tv_test = child.NewBvState("tv", 32);
     auto addr_cnt = child.NewBvState("addr_cnt", 32);
     auto byte_cnt = child.NewBvState("byte_cnt", 32);
     auto vector_cnt = child.NewBvState("vector_cnt", 32);
