@@ -14,7 +14,9 @@ sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
   float f2 = (*(float*)&arg2);
 
   float rezzy = f1 * f2;
-  cout << rezzy << "rezzy\n";
+  cout << "rezzy\n";
+  cout << rezzy;
+  
   
   //sc_bigint<32> ires = arg1 * arg2;
 
