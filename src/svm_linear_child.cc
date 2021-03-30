@@ -47,7 +47,7 @@ void DefineLinearChild(Ila& m) {
         
         instr.SetUpdate(vector_cnt, vector_cnt + BvConst(1, 32));
         instr.SetUpdate(dot_sum, BvConst(0, 32));
-        instr.SetUpdate(tv_test, tvaddr);
+        instr.SetUpdate(tv_test, tv_addr);
 
         std::cout << "inside vector_sum_prep past updates\n";   
         // move to dot_sum
