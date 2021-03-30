@@ -23,10 +23,8 @@ namespace svma {
             m.NewBvInput("data_in", 32);
 
             // internal arch state 
-            m.NewBvState("base_addr_sv_L", 16);
-            m.NewBvState("base_addr_sv_H", 16);
-            m.NewBvState("base_addr_tv_L", 16);
-            m.NewBvState("base_addr_tv_H", 16);
+            m.NewBvState("base_addr_sv", 32);
+            m.NewBvState("base_addr_tv", 32);
             m.NewBvState("tau", 32);
             m.NewBvState("c", 32);
             m.NewBvState("b", 32);
@@ -64,45 +62,25 @@ namespace svma {
             std::cout << "did the valid\n";
 
 
-        { // SVM_SV_BASEADDR_H
-            std::cout << "inside SVM_SV_BASEADDR_H\n";
-            auto instr = m.NewInstr("SVM_SV_BASEADDR_H");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05A2));
-
-            instr.SetUpdate(m.state("base_addr_sv_H"), Extract(m.input("data_in"), 15, 7)); // update a start_addr
-
-            
-
-        }
-
 
         { // SVM_SV_BASEADDR_L
-            std::cout << "inside  SVM_SV_BASEADDR_L\n";
-            auto instr = m.NewInstr("SVM_SV_BASEADDR_L");
+            std::cout << "inside  SVM_SV_BASEADDR\n";
+            auto instr = m.NewInstr("SVM_SV_BASEADDR");
             instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05A4)); 
 
-            instr.SetUpdate(m.state("base_addr_sv_L"), Extract(m.input("data_in"), 7, 0));
+            instr.SetUpdate(m.state("base_addr_sv"), m.input("data_in"));
             
 
         }
 
 
-        { // SVM_TV_BASEADDR_H
-            std::cout << "inside  SVM_TV_BASEADDR_H\n";
-            auto instr = m.NewInstr("SVM_TV_BASEADDR_H");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05A6)); 
-
-            instr.SetUpdate(m.state("base_addr_tv_H"), Extract(m.input("data_in"), 15, 8));
-            
-
-        }
 
         { // SVM_TV_BASEADDR_L
-            std::cout << "inside  SVM_TV_BASEADDR_L\n";
-            auto instr = m.NewInstr("SVM_TV_BASEADDR_L");
+            std::cout << "inside  SVM_TV_BASEADDR\n";
+            auto instr = m.NewInstr("SVM_TV_BASEADDR");
             instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05A8)); 
 
-            instr.SetUpdate(m.state("base_addr_tv_L"), Extract(m.input("data_in"), 7, 0));
+            instr.SetUpdate(m.state("base_addr_tv"), m.input("data_in"));
             
 
         }
