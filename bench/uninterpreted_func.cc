@@ -17,7 +17,7 @@ sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
   //sc_bigint<32> ires = arg1 * arg2;
 
   int ires = *(int*)&rezzy;
-  sc_bigint<32> res = ires.to_int();
+  sc_bigint<32> res = ires;
 
 
 
@@ -37,11 +37,11 @@ sc_biguint<32> SVMA::Sub(sc_biguint<32> sub1, sc_biguint<32> sub2) {
   float rezzy = f1 - f2;
 
   int ires = *(int*)&rezzy;
-  sc_bigint<32> res = ires.to_int();
+  sc_bigint<32> res = ires;
 
   //sc_bigint<32> out = sub1_s - sub2_s;
-  sc_bigint<32> result_s = res.to_int();
-  sc_biguint<32> result = result_s;
+  //sc_bigint<32> result_s = res.to_int();
+  sc_biguint<32> result = res;
 
   return result;
 
@@ -50,7 +50,7 @@ sc_biguint<32> SVMA::Sub(sc_biguint<32> sub1, sc_biguint<32> sub2) {
 sc_biguint<32> SVMA::Exponent(sc_biguint<32> exponent) {
 
   sc_bigint<32> arg1 = exponent.to_int();
-  
+
   double arg0 = arg1.to_double();
 
   // need exponent to be double
