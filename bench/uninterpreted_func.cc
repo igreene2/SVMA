@@ -17,13 +17,9 @@ sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
   //sc_bigint<32> ires = arg1 * arg2;
 
   int ires = *(int*)&rezzy;
-  sc_bigint<32> res = ires;
-
-
-
-  
-  sc_biguint<32> result = res;
-  return result;
+  //sc_bigint<32> res = ires;
+  //sc_biguint<32> result = res;
+  return ires;
 }
 
 sc_biguint<32> SVMA::Sub(sc_biguint<32> sub1, sc_biguint<32> sub2) {
