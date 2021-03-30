@@ -3,6 +3,7 @@
 #include <math.h>
 
 #include <fstream>
+#include<iostream>
 
 
 sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
