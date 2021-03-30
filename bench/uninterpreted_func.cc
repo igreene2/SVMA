@@ -20,7 +20,7 @@ sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
   cout << "f1and2\n";
   cout << f1;
   cout << "\n";
-  cout << f2
+  cout << f2;
   
   
   //sc_bigint<32> ires = arg1 * arg2;
