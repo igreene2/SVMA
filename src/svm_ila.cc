@@ -60,14 +60,14 @@ namespace svma {
             // remember to write back done and output to the address in cmd instruction!
         
             std::cout << "declared all the state\n";
-            m.SetValid(m.input("addr_in") >= 0x0000 & m.input("addr_in") < 0x01C2);
+            m.SetValid(m.input("addr_in") >= 0x0000 & m.input("addr_in") < 0x05C2);
             std::cout << "did the valid\n";
 
 
         { // SVM_SV_BASEADDR_H
             std::cout << "inside SVM_SV_BASEADDR_H\n";
             auto instr = m.NewInstr("SVM_SV_BASEADDR_H");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01A2));
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05A2));
 
             instr.SetUpdate(m.state("base_addr_sv_H"), Extract(m.input("data_in"), 15, 7)); // update a start_addr
 
@@ -79,7 +79,7 @@ namespace svma {
         { // SVM_SV_BASEADDR_L
             std::cout << "inside  SVM_SV_BASEADDR_L\n";
             auto instr = m.NewInstr("SVM_SV_BASEADDR_L");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01A4)); 
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05A4)); 
 
             instr.SetUpdate(m.state("base_addr_sv_L"), Extract(m.input("data_in"), 7, 0));
             
@@ -90,7 +90,7 @@ namespace svma {
         { // SVM_TV_BASEADDR_H
             std::cout << "inside  SVM_TV_BASEADDR_H\n";
             auto instr = m.NewInstr("SVM_TV_BASEADDR_H");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01A6)); 
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05A6)); 
 
             instr.SetUpdate(m.state("base_addr_tv_H"), Extract(m.input("data_in"), 15, 7));
             
@@ -100,7 +100,7 @@ namespace svma {
         { // SVM_TV_BASEADDR_L
             std::cout << "inside  SVM_TV_BASEADDR_L\n";
             auto instr = m.NewInstr("SVM_TV_BASEADDR_L");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01A8)); 
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05A8)); 
 
             instr.SetUpdate(m.state("base_addr_tv_L"), Extract(m.input("data_in"), 7, 0));
             
@@ -111,7 +111,7 @@ namespace svma {
         { // SVM_GAMMA (tau)
             std::cout << "inside  SVM_GAMMA \n";
             auto instr = m.NewInstr("SVM_GAMMA");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01AA)); // is addr_in meant to be a decode thing?
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05AA)); // is addr_in meant to be a decode thing?
             // what happens if this instruction is first? need some guarantee about which of these is first
             // maybe and if then else in both? 
             // might also just need to store as the size they come and then concat later?
@@ -125,7 +125,7 @@ namespace svma {
         { // SVM_C
             std::cout << "inside  SVM_C\n";
             auto instr = m.NewInstr("SVM_C");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01AC)); 
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05AC)); 
 
             instr.SetUpdate(m.state("c"), m.input("data_in"));
             
@@ -136,7 +136,7 @@ namespace svma {
         { // SVM_B
             std::cout << "inside  SVM_B\n";
             auto instr = m.NewInstr("SVM_B");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01AE)); 
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05AE)); 
 
             instr.SetUpdate(m.state("b"), m.input("data_in"));
             
@@ -146,7 +146,7 @@ namespace svma {
         { // SVM_FV_DIM
             std::cout << "inside SVM_FV_DIM\n";
             auto instr = m.NewInstr("SVM_FV_DIM");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01B0)); // 
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05B0)); // 
    
             instr.SetUpdate(m.state("fv_dim"), m.input("data_in"));
             
@@ -157,7 +157,7 @@ namespace svma {
         { // SVM_NUMSV
             std::cout << "inside  SVM_NUMSV\n";
             auto instr = m.NewInstr("SVM_NUMSV");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01B2)); 
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05B2)); 
 
             instr.SetUpdate(m.state("num_sv"), m.input("data_in"));
             
@@ -168,7 +168,7 @@ namespace svma {
         { // SVM_SHIFT12
             std::cout << "inside  SVM_SHIFT12\n";
             auto instr = m.NewInstr("SVM_SHIFT12");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01B4)); 
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05B4)); 
 
             instr.SetUpdate(m.state("shift1"), Extract(m.input("data_in"), 7, 0));
             instr.SetUpdate(m.state("shift2"), Extract(m.input("data_in"), 15, 8));
@@ -178,7 +178,7 @@ namespace svma {
         { // SVM_SHIFT3
             std::cout << "inside  SVM_SHIFT3\n";
             auto instr = m.NewInstr("SVM_SHIFT3");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01B6));
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05B6));
 
             instr.SetUpdate(m.state("shift3"), Extract(m.input("data_in"), 7, 0));
         }
@@ -187,7 +187,7 @@ namespace svma {
         { // SVM_TH
             std::cout << "inside  SVM_TH\n";
             auto instr = m.NewInstr("SVM_TH");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01B8)); 
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05B8)); 
 
             instr.SetUpdate(m.state("th"), m.input("data_in"));
             
@@ -197,7 +197,7 @@ namespace svma {
         { // SVM_CMD_STATUS
             std::cout << "inside SVM_CMD_STATUS\n";
             auto instr = m.NewInstr("SVM_CMD_STATUS");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x01A0));
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x05A0));
 
             // child valid bit
             instr.SetUpdate(m.state("run_svma"), SelectBit(m.input("data_in"), 7));
@@ -228,7 +228,7 @@ namespace svma {
         { // SVM_STORE_DATA
             std::cout << "inside STORE_DATA\n";
             auto instr = m.NewInstr("STORE_DATA");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") < 0x01A2));
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") < 0x05A2));
 
             auto update_memory_at_addrin = Store(m.state("mem"), m.input("addr_in"), m.input("data_in"));
             instr.SetUpdate(m.state("mem"), update_memory_at_addrin);
