@@ -18,6 +18,7 @@ void DefineLinearChild(Ila& m) {
     // create concatenated addresses for sv and tv
     auto sv_addr = Concat(m.state("base_addr_sv_H"), m.state("base_addr_sv_L"));
     auto tv_addr = Concat(m.state("base_addr_tv_H"), m.state("base_addr_tv_L"));
+    auto tv_test = child.newBvState("tv", 32);
     auto addr_cnt = child.NewBvState("addr_cnt", 32);
     auto byte_cnt = child.NewBvState("byte_cnt", 32);
     auto vector_cnt = child.NewBvState("vector_cnt", 32);
@@ -30,6 +31,7 @@ void DefineLinearChild(Ila& m) {
     child.AddInit(vector_cnt == 0);
     child.AddInit(dot_sum == 0);
     child.AddInit(alpha == 0);
+    child.AddInit(tv_test == 0);
 
     std::cout << "defined all the kiddie state\n";
 
@@ -45,6 +47,7 @@ void DefineLinearChild(Ila& m) {
         
         instr.SetUpdate(vector_cnt, vector_cnt + BvConst(1, 32));
         instr.SetUpdate(dot_sum, BvConst(0, 32));
+        instr.SetUpdate(tv_test, tvaddr);
 
         std::cout << "inside vector_sum_prep past updates\n";   
         // move to dot_sum
