@@ -8,8 +8,8 @@
 
 sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
 
-  float arg1 = reinterpret_cast<float*>(&mult1);
-  float arg2 = reinterpret_cast<float*>(&mult2);
+  float* arg1 = reinterpret_cast<float*>(&mult1);
+  float* arg2 = reinterpret_cast<float*>(&mult2);
   
   // sc_bigint<32> arg1 = mult1.to_int();
   // sc_bigint<32> arg2 = mult2.to_int();
@@ -19,10 +19,13 @@ sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
   cout << arg2;
   cout << "\n";
 
+  float a1 = *arg1;
+  float a2 = *arg2;
+
   // float f1 = (*(float*)&arg1);
   // float f2 = (*(float*)&arg2);
 
-  float rezzy = arg1 * arg2;
+  float rezzy = a1 * a2;
  
   // cout << "f1and2\n";
   // cout << f1;
@@ -33,7 +36,7 @@ sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
   cout << rezzy;
   cout << "\n";
   
-  int ires = reinterpret_cast<int*>(&rezzy);
+  int* ires = reinterpret_cast<int*>(&rezzy);
   //sc_bigint<32> ires = arg1 * arg2;
 
   //int ires = *(int*)&rezzy;
