@@ -74,6 +74,7 @@ SC_MODULE(testbench) {
   sc_clock clk;
 
   sc_signal< sc_biguint<1> > SVMA_mode_sig;
+  sc_signal< sc_biguint<1> > SVMA_isfloat_sig;
   sc_signal< sc_biguint<32> > SVMA_data_in_sig;
   sc_signal< sc_biguint<32> > SVMA_addr_in_sig;
 
@@ -88,6 +89,7 @@ SC_MODULE(testbench) {
     // binding the signals 
     src.clk(clk);
     src.SVMA_mode(SVMA_mode_sig);
+    src.SVMA_isfloat(SVMA_isfloat_sig;
     src.SVMA_addr_in(SVMA_addr_in_sig);
     src.SVMA_data_in(SVMA_data_in_sig);
     src.input_done(input_done);
@@ -95,6 +97,7 @@ SC_MODULE(testbench) {
 
     // // connecting signals to svma
     svma_inst.SVMA_mode_in(SVMA_mode_sig);
+    svma_inst.SVMA_isfloat_in(SVMA_isfloat_sig);
     svma_inst.SVMA_addr_in_in(SVMA_addr_in_sig);
     svma_inst.SVMA_data_in_in(SVMA_data_in_sig);
 
