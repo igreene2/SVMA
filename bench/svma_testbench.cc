@@ -48,7 +48,7 @@ SC_MODULE(Source) {
       std::string addr = cmd_seq["program fragment"][i]["addr"].get<std::string>();
       SVMA_addr_in = std::stol(addr, nullptr, 16);
       // extract each data byte from data
-      if(SVMA_isfloat == 1)
+      if(SVMA_isfloat == 0)
       {
         SVMA_data_in = std::stol(cmd_seq["program fragment"][i]["data"].get<std::string>(), nullptr, 16);
       }
