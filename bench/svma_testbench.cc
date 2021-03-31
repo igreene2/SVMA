@@ -28,8 +28,8 @@ SC_MODULE(Source) {
   void source_input() {
     // reset the port
     SVMA_data_in = 0;
-    SVMA_mode = 0;
-    SVMA_isfloat = 0;
+    // SVMA_mode = 0;
+    // SVMA_isfloat = 0;
     SVMA_addr_in= 0;
 
     input_done = 0;
@@ -42,7 +42,7 @@ SC_MODULE(Source) {
     fin >> cmd_seq;
 
     // pass the command to the ports
-    for (int i = 1; i < cmd_seq["program fragment"].size(); i++) {
+    for (int i = 0; i < cmd_seq["program fragment"].size(); i++) {
       SVMA_mode = std::stol(cmd_seq["program fragment"][i]["mode"].get<std::string>(), nullptr, 10);
       SVMA_isfloat = std::stol(cmd_seq["program fragment"][i]["isfloat"].get<std::string>(), nullptr, 10);
       std::string addr = cmd_seq["program fragment"][i]["addr"].get<std::string>();
