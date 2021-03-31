@@ -14,6 +14,7 @@ SC_MODULE(Source) {
 
   sc_out< sc_biguint<32> > SVMA_data_in;
   sc_out< sc_biguint<1> > SVMA_mode;
+  sc_out< sc_biguint<1> > SVMA_isfloat;
   sc_out< sc_biguint<32> > SVMA_addr_in;
 
   sc_out < sc_biguint<1> > input_done;
