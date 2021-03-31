@@ -89,7 +89,7 @@ SC_MODULE(testbench) {
     // binding the signals 
     src.clk(clk);
     src.SVMA_mode(SVMA_mode_sig);
-    src.SVMA_isfloat(SVMA_isfloat_sig;
+    src.SVMA_isfloat(SVMA_isfloat_sig);
     src.SVMA_addr_in(SVMA_addr_in_sig);
     src.SVMA_data_in(SVMA_data_in_sig);
     src.input_done(input_done);
