@@ -48,6 +48,7 @@ SC_MODULE(Source) {
       std::string addr = cmd_seq["program fragment"][i]["addr"].get<std::string>();
       SVMA_addr_in = std::stol(addr, nullptr, 16);
       // extract each data byte from data
+      std::cout << SVMA_isfloat << std::endl;
       if(SVMA_isfloat == 0)
       {
         std::cout << "inside isfloat 0" << std::endl;
