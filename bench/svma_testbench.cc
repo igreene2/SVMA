@@ -52,8 +52,9 @@ SC_MODULE(Source) {
       }
       else
       {
-        data_in = cmd_seq["program fragment"][i]["data"];
-        SVMA_data_in = reinterpret_cast<int*>(data_in);
+        float data_in = cmd_seq["program fragment"][i]["data"];
+        sc_biguint<32>* data = reinterpret_cast<sc_biguint<32>*>(&data_in);
+        SVMA_data_in = *data;
       }
       wait(10, SC_NS);
     }
