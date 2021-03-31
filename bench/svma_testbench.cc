@@ -97,7 +97,6 @@ SC_MODULE(testbench) {
 
     // // connecting signals to svma
     svma_inst.SVMA_mode_in(SVMA_mode_sig);
-    svma_inst.SVMA_isfloat_in(SVMA_isfloat_sig);
     svma_inst.SVMA_addr_in_in(SVMA_addr_in_sig);
     svma_inst.SVMA_data_in_in(SVMA_data_in_sig);
 
