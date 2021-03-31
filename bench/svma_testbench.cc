@@ -50,6 +50,7 @@ SC_MODULE(Source) {
       // extract each data byte from data
       std::cout << SVMA_isfloat << std::endl;
       std::cout << SVMA_mode << std::endl;
+      std::cout << SVMA_addr_in<< std::endl;
       if(SVMA_isfloat == 0)
       {
         std::cout << "inside isfloat 0" << std::endl;
