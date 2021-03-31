@@ -50,10 +50,12 @@ SC_MODULE(Source) {
       // extract each data byte from data
       if(SVMA_isfloat == 0)
       {
+        std::cout << "inside isfloat 0" << std::endl;
         SVMA_data_in = std::stol(cmd_seq["program fragment"][i]["data"].get<std::string>(), nullptr, 16);
       }
       else
       {
+        std::cout << "inside isfloat 1" << std::endl;
         float data_in = cmd_seq["program fragment"][i]["data"];
         sc_biguint<32>* data = reinterpret_cast<sc_biguint<32>*>(&data_in);
         SVMA_data_in = *data;
