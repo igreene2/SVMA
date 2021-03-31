@@ -57,6 +57,7 @@ SC_MODULE(Source) {
         float data_in = cmd_seq["program fragment"][i]["data"];
         sc_biguint<32>* data = reinterpret_cast<sc_biguint<32>*>(&data_in);
         SVMA_data_in = *data;
+        std::cout << "leaving isfloat 1" << std::endl;
       }
       else
       {
