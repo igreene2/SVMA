@@ -42,11 +42,19 @@ SC_MODULE(Source) {
     // pass the command to the ports
     for (int i = 0; i < cmd_seq["program fragment"].size(); i++) {
       SVMA_mode = std::stol(cmd_seq["program fragment"][i]["mode"].get<std::string>(), nullptr, 16);
+      SVMA_isfloat = std::stol(cmd_seq["program fragment"][i]["isfloat"].get<std::string>(), nullptr, 16);
       std::string addr = cmd_seq["program fragment"][i]["addr"].get<std::string>();
       SVMA_addr_in = std::stol(addr, nullptr, 16);
       // extract each data byte from data
-      SVMA_data_in = std::stol(cmd_seq["program fragment"][i]["data"].get<std::string>(), nullptr, 2);
-     
+      if(SVMA_isfloat == 1)
+      {
+        SVMA_data_in = std::stol(cmd_seq["program fragment"][i]["data"].get<std::string>(), nullptr, 16);
+      }
+      else
+      {
+        data_in = cmd_seq["program fragment"][i]["data"];
+        SVMA_data_in = reinterpret_cast<int*>(data_in);
+      }
       wait(10, SC_NS);
     }
 
