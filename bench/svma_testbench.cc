@@ -28,8 +28,8 @@ SC_MODULE(Source) {
   void source_input() {
     // reset the port
     SVMA_data_in = 0;
-    // SVMA_mode = 0;
-    // SVMA_isfloat = 0;
+    SVMA_mode = 1;
+    SVMA_isfloat = 1;
     SVMA_addr_in= 0;
 
     input_done = 0;
@@ -63,7 +63,7 @@ SC_MODULE(Source) {
         sc_biguint<32>* data = reinterpret_cast<sc_biguint<32>*>(&data_in);
         SVMA_data_in = *data;
       }
-      wait(10, SC_NS);
+      wait(10, SC_NS); 
     }
 
     input_done = 1;
