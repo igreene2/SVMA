@@ -121,18 +121,18 @@ SC_MODULE(testbench) {
     svma_inst.instr_log.open("./sim_info/instr_log_svma.txt", ofstream::out | ofstream::trunc);
     svma_inst.instr_update_log.open("./sim_info/instr_update.log", ios::out | ios::trunc);
 
-    std::cout << "start running" << std::endl;
-    std::cout << "*********** simulation start ***********" << std::endl;
+    //std::cout << "start running" << std::endl;
+    //std::cout << "*********** simulation start ***********" << std::endl;
     wait(10, SC_NS);
 
     while (input_done == 0) {
-		  std::cout << "current simulation time: " << '\t' << sc_time_stamp() << "\r" << std::flush;
+		  //std::cout << "current simulation time: " << '\t' << sc_time_stamp() << "\r" << std::flush;
       wait(10, SC_NS);
     }
 
     wait(100000, SC_NS);
     std::cout << '\n' << std::endl;
-    std::cout << "************* sc_stop **************" << std::endl;
+    //std::cout << "************* sc_stop **************" << std::endl;
     svma_inst.instr_log.close();
     // make this more readable
     std::cout << "output: " << std::endl;
