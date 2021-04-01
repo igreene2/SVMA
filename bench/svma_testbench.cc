@@ -55,8 +55,8 @@ SC_MODULE(Source) {
         int data = *reinterpret_cast<int*>(&data_in);
         float data2 = *reinterpret_cast<float*>(&data);
         std::cout << "data and data2" << std::endl;
-        std::cout << *data << " " << *data2 << std::endl;
-        SVMA_data_in = *data;
+        std::cout << data << " " << data2 << std::endl;
+        SVMA_data_in = data;
         std::cout << "leaving isfloat 1" << std::endl;
       }
       else
