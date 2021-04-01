@@ -52,8 +52,8 @@ SC_MODULE(Source) {
       {
         std::cout << "inside isfloat 1" << std::endl;
         float data_in = cmd_seq["program fragment"][i]["data"];
-        int* data = reinterpret_cast<int*>(&data_in);
-        float* data2 = reinterpret_cast<float*>(&data);
+        int data = *reinterpret_cast<int*>(&data_in);
+        float data2 = *reinterpret_cast<float*>(&data);
         std::cout << "data and data2" << std::endl;
         std::cout << *data << " " << *data2 << std::endl;
         SVMA_data_in = *data;
