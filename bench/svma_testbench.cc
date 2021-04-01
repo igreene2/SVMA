@@ -40,7 +40,7 @@ SC_MODULE(Source) {
     //parse the json file
     json cmd_seq;
     fin >> cmd_seq;
-
+     wait(10, SC_NS); 
     // pass the command to the ports
     //for (int i = 0; i < cmd_seq["program fragment"].size(); i++) {
     for (int i = 0; i < 5; i++) {
