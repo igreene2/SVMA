@@ -42,24 +42,20 @@ SC_MODULE(Source) {
     fin >> cmd_seq;
      wait(10, SC_NS); 
     // pass the command to the ports
-    //for (int i = 0; i < cmd_seq["program fragment"].size(); i++) {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < cmd_seq["program fragment"].size(); i++) {
       SVMA_mode = std::stol(cmd_seq["program fragment"][i]["mode"].get<std::string>(), nullptr, 10);
       SVMA_isfloat = std::stol(cmd_seq["program fragment"][i]["isfloat"].get<std::string>(), nullptr, 10);
       std::string addr = cmd_seq["program fragment"][i]["addr"].get<std::string>();
       SVMA_addr_in = std::stol(addr, nullptr, 16);
       // extract each data byte from data
-      std::cout << "program fragment" << std::endl;
-      std::cout <<  cmd_seq["program fragment"][i] << std::endl;
-      std::cout << "isfloat" << std::endl;
-      std::cout << SVMA_isfloat << std::endl;
-      std::cout << SVMA_mode << std::endl;
-      std::cout << SVMA_addr_in<< std::endl;
       if(SVMA_isfloat == 0)
       {
         std::cout << "inside isfloat 1" << std::endl;
         float data_in = cmd_seq["program fragment"][i]["data"];
         sc_biguint<32>* data = reinterpret_cast<sc_biguint<32>*>(&data_in);
+        float* data2 = reinterpret_cast<float*>(&data);
+        std::cout << "data and data2" << std::endl;
+        std::cout << data << " " << data2 << std::endl;
         SVMA_data_in = *data;
         std::cout << "leaving isfloat 1" << std::endl;
       }
