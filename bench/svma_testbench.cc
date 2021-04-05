@@ -3,6 +3,7 @@
 #include <sstream>
 #include <fstream>
 #include <sstream>
+#include <bitset>
 
 #include "nlohmann/json.hpp"
 #include "SVMA.h"
@@ -49,20 +50,18 @@ SC_MODULE(Source) {
       std::string addr = cmd_seq["program fragment"][i]["addr"].get<std::string>();
       SVMA_addr_in = std::stol(addr, nullptr, 16);
       // extract each data byte from data
+      // 0 means it is a float and 1 means its not
       if(isfloat == 0)
       {
-        std::cout << "inside isfloat 1" << std::endl;
         float data_in = cmd_seq["program fragment"][i]["data"];
-        int data = *reinterpret_cast<int*>(&data_in);
+        unsigned int data = *reinterpret_cast<unsigned int*>(&data_in);
         float data2 = *reinterpret_cast<float*>(&data);
-        std::cout << "data and data2" << std::endl;
-        std::cout << data << " " << data2 << std::endl;
+        std::cout << data2 << std::endl;
         SVMA_data_in = data;
-        std::cout << "leaving isfloat 1" << std::endl;
+       
       }
       else
       {
-        std::cout << "inside isfloat 0" << std::endl;
         SVMA_data_in = std::stol(cmd_seq["program fragment"][i]["data"].get<std::string>(), nullptr, 16);
        
       }
@@ -132,10 +131,18 @@ SC_MODULE(testbench) {
     //std::cout << "************* sc_stop **************" << std::endl;
     svma_inst.instr_log.close();
     // make this more readable
+    std::cout << "final_sum: " << std::endl;
+    std::cout << svma_inst.linear_final_sum << std::endl;
+    unsigned int sub1_s = svma_inst.linear_final_sum.to_uint();
+    float dats = (*(float*)&sub1_s);
+    std::cout << dats << std::endl;
     std::cout << "output: " << std::endl;
     std::cout << svma_inst.SVMA_output << std::endl;
     std::cout << "score: " << std::endl;
     std::cout << svma_inst.SVMA_score << std::endl;
+    unsigned int sub1 = svma_inst.SVMA_score.to_uint();
+    float dat = (*(float*)&sub1);
+    std::cout << dat << std::endl;
 
 
 	
