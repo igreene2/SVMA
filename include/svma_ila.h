@@ -1,5 +1,5 @@
-#ifndef MAX_ILA_H__
-#define MAX_ILA_H__
+#ifndef SVMA_ILA_H__
+#define SVMA_ILA_H__
 
 #include <ilang/ilang++.h>
 #include <string>

@@ -66,7 +66,7 @@ void DefineLinearChild(Ila& m) {
         std::cout << "inside dot_sum linear\n";
         auto mult = Mult(tv_data, sv_data);
 
-        instr.SetUpdate(dot_sum, dot_sum + mult);
+        instr.SetUpdate(dot_sum, Add(dot_sum, mult));
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
         instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
 
@@ -88,7 +88,7 @@ void DefineLinearChild(Ila& m) {
         auto Ai = Load(m.state("mem"), sv_addr + addr_cnt);  
         auto dot_sum_shift = Shift(dot_sum, Concat(BvConst(0, 24), m.state("shift1")));
         auto mult = Mult(dot_sum_shift, Ai);
-        instr.SetUpdate(final_sum, final_sum + mult);
+        instr.SetUpdate(final_sum, Add(final_sum, mult));
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
         instr.SetUpdate(byte_cnt, BvConst(0, 32));
       

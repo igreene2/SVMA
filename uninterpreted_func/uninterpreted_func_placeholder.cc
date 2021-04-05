@@ -15,6 +15,11 @@ sc_biguint<32> SVMA::Sub(sc_biguint<32> sub1, sc_biguint<32> sub2) {
   return 0;
 }
 
+sc_biguint<32> SVMA::Add(sc_biguint<32> sub1, sc_biguint<32> sub2) {
+
+  return 0;
+}
+
 sc_biguint<32> SVMA::Exponent(sc_biguint<32> exponent) {
 
   return 0;
