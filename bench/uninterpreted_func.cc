@@ -4,111 +4,143 @@
 
 #include <fstream>
 #include<iostream>
+#include<bitset>
 
 
 sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
 
-  float* arg1 = reinterpret_cast<float*>(&mult1);
-  float* arg2 = reinterpret_cast<float*>(&mult2);
+  cout << "mult1and2\n";
+  cout << mult1 << std::endl;
+  cout << "\n";
+  cout << mult2 << std::endl;
+  cout << "\n";
+
+  unsigned int i = mult1.to_uint();
+  unsigned int ii = mult2.to_uint();
+
+  float arg1 = (*(float*)&i);
+  float arg2 = (*(float*)&ii);
   
-  // sc_bigint<32> arg1 = mult1.to_int();
-  // sc_bigint<32> arg2 = mult2.to_int();
+
   cout << "arg1and2\n";
-  cout << arg1;
+  cout << arg1 << " " << std::bitset<32>(arg1) << std::endl;
   cout << "\n";
-  cout << arg2;
+  cout << arg2 << " " << std::bitset<32>(arg2) << std::endl;
   cout << "\n";
 
-  float a1 = *arg1;
-  float a2 = *arg2;
 
-  // float f1 = (*(float*)&arg1);
-  // float f2 = (*(float*)&arg2);
+  float rezzy = arg1 * arg2;
 
-  float rezzy = a1 * a2;
- 
-  // cout << "f1and2\n";
-  // cout << f1;
-  // cout << "\n";
-  // cout << f2;
-  // cout << "\n";
   cout << "rezzy\n";
   cout << rezzy;
   cout << "\n";
   
-  sc_biguint<32>* ires = reinterpret_cast<sc_biguint<32>*>(&rezzy);
-  //sc_bigint<32> ires = arg1 * arg2;
+  unsigned int ires = *reinterpret_cast<unsigned int*>(&rezzy);
 
-  //int ires = *(int*)&rezzy;
-  
-  //sc_bigint<32> res = ires;
-  //sc_biguint<32> result = res;
-  return *ires;
+
+  cout << "ires\n";
+  cout << ires;
+  cout << "\n";
+
+  return ires;
 }
 
 sc_biguint<32> SVMA::Sub(sc_biguint<32> sub1, sc_biguint<32> sub2) {
 
-  sc_bigint<32> sub1_s = sub1;
-  sc_bigint<32> sub2_s = sub2;
+  unsigned int sub1_s = sub1.to_uint();
+  unsigned int sub2_s = sub2.to_uint();
 
   float f1 = (*(float*)&sub1_s);
   float f2 = (*(float*)&sub2_s);
 
   float rezzy = f1 - f2;
 
-  int ires = *(int*)&rezzy;
-  sc_bigint<32> res = ires;
+  unsigned int ires = *reinterpret_cast<unsigned int*>(&rezzy);
 
-  //sc_bigint<32> out = sub1_s - sub2_s;
-  //sc_bigint<32> result_s = res.to_int();
-  sc_biguint<32> result = res;
 
-  return result;
+  return ires;
+
+}
+
+sc_biguint<32> SVMA::Add(sc_biguint<32> sub1, sc_biguint<32> sub2) {
+  cout << "add1and2\n";
+  cout << sub1  << std::endl;
+  cout << "\n";
+  cout << sub2  << std::endl;
+  cout << "\n";
+
+  unsigned int sub1_s = sub1.to_uint();
+  unsigned int sub2_s = sub2.to_uint();
+
+  float f1 = (*(float*)&sub1_s);
+  float f2 = (*(float*)&sub2_s);
+
+  float rezzy = f1 + f2;
+
+  cout << "rezzy add\n";
+  cout << rezzy;
+  cout << "\n";
+  
+
+  unsigned int ires = *reinterpret_cast<unsigned int*>(&rezzy);
+
+  cout << "ires add\n";
+  cout << ires;
+  cout << "\n";
+  
+  return ires;
 
 }
 
 sc_biguint<32> SVMA::Exponent(sc_biguint<32> exponent) {
 
-  sc_bigint<32> arg1 = exponent.to_int();
+  unsigned int arg1 = exponent.to_uint();
 
-  double arg0 = arg1.to_double();
+
+  float f1 = (*(float*)&arg1);
 
   // need exponent to be double
-  double res = exp(arg0);
-  
-  sc_bigint<32> result_s = res;
-  sc_biguint<32> result = result_s;
-
-  return result;
+  float res = exp(f1);
+  unsigned int ires = *reinterpret_cast<unsigned int*>(&res);
+  return ires;
 }
 
 sc_biguint<32> SVMA::Shift(sc_biguint<32> base, sc_biguint<32> shiftamt) {
   
-  sc_bigint<32> base_s = base;
-  sc_bigint<32> shiftamt_s = shiftamt;  
+  unsigned int base_s = base.to_uint();
+  unsigned int shiftamt_s = shiftamt.to_uint();  
 
-  sc_bigint<32>  base_shift = base_s >> shiftamt_s;
-  sc_biguint<32> result = base_shift;
+  unsigned int base_shift = base_s >> shiftamt_s;
 
-  return result;
+  return base_shift;
+
 }
 
 sc_biguint<32> SVMA::MultbyNegativeOne(sc_biguint<32> mult1) {
 
-  sc_bigint<32> arg1 = mult1.to_int();
-  sc_bigint<32> arg2 = -1;
+  unsigned int arg1 = mult1.to_uint();
 
-  sc_bigint<32> out = arg1 * arg2;
-  sc_biguint<32> result = out;
+  float f2 = -1;
+
+  float f1 = (*(float*)&arg1);
+
+  float rezzy = f1 * f2;
+
+  unsigned int result = *reinterpret_cast<unsigned int*>(&rezzy);
 
   return result;
 }
 
 sc_biguint<32> SVMA::Greatest(sc_biguint<32> comp1, sc_biguint<32> comp2) {
   
-  sc_bigint<32> comp1_s = comp1;
-  sc_bigint<32> comp2_s = comp2;
-  sc_bigint<32> out = (comp1_s > comp2_s) ? 1 : 0;
+
+  unsigned int sub1_s = comp1.to_uint();
+  unsigned int sub2_s = comp2.to_uint();
+
+  float f1 = (*(float*)&sub1_s);
+  float f2 = (*(float*)&sub2_s);
+
+  sc_bigint<32> out = (f1 > f2) ? 1 : 0;
   sc_biguint<32> result = out;
   return result;
 
