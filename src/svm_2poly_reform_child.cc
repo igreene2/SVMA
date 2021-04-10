@@ -54,7 +54,7 @@ void DefineTwoPolyReformChild(Ila& m) {
         auto mult  = Mult(pc_mat_data, tv_data);
   
    
-        instr.SetUpdate(x_transpose_total, x_transpose_total + mult);
+        instr.SetUpdate(x_transpose_total, Add(x_transpose_total, mult));
         instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
         // If the byte counter > sv dimensionality then dot_op else dot_sum
@@ -76,7 +76,7 @@ void DefineTwoPolyReformChild(Ila& m) {
      
 
         instr.SetUpdate(tv_element_cnt, tv_element_cnt + BvConst(1, 32));
-        instr.SetUpdate(final_sum, final_sum + mult);
+        instr.SetUpdate(final_sum, Add(final_sum, mult));
         instr.SetUpdate(byte_cnt, BvConst(0, 32));
         instr.SetUpdate(x_transpose_total, BvConst(0, 32));
         

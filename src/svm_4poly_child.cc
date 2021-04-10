@@ -63,7 +63,7 @@ void DefineFourPolyChild(Ila& m) {
 
         auto mult = Mult(tv_data, sv_data);
 
-        instr.SetUpdate(dot_sum, dot_sum + mult);
+        instr.SetUpdate(dot_sum, Add(dot_sum, mult));
         instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
 
@@ -90,7 +90,7 @@ void DefineFourPolyChild(Ila& m) {
         auto mult = Mult(c_4, alpha);
       
         instr.SetUpdate(byte_cnt, BvConst(0, 32));
-        instr.SetUpdate(final_sum, final_sum + mult);
+        instr.SetUpdate(final_sum, Add(final_sum, mult));
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32)); 
         // SHIFT? truncation??
         

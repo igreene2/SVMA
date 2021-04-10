@@ -40,7 +40,7 @@ void DefineLinearReformChild(Ila& m) {
          std::cout << "inside pc_sv_sum linear reform\n";
         auto mult = Mult(pc_sv_data, tv_data);
 
-        instr.SetUpdate(final_sum, final_sum + mult);
+        instr.SetUpdate(final_sum, Add(final_sum, mult));
          std::cout << "inside pc_sv_sum linear reform\n";
         instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
          std::cout << "inside pc_sv_sum linear reform\n";

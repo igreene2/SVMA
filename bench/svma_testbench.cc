@@ -36,7 +36,7 @@ SC_MODULE(Source) {
     input_done = 0;
     // read program fragment from file
     std::ifstream fin;
-    fin.open("./sim_info/mnist_linear.json", ios::in);
+    fin.open("./sim_info/bc_linear.json", ios::in);
     
     //parse the json file
     json cmd_seq;

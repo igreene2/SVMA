@@ -62,7 +62,7 @@ void DefineTwoPolyChild(Ila& m) {
 
         auto mult = Mult(tv_data, sv_data);
 
-        instr.SetUpdate(dot_sum, dot_sum + mult);
+        instr.SetUpdate(dot_sum, Add(dot_sum, mult));
         instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
 
@@ -75,7 +75,7 @@ void DefineTwoPolyChild(Ila& m) {
 
     // dot_op: add c to dot_sum, square it, get beta squared*Ai, multiply that by dot_sum, subtract b and Th 
     {   
-        std::cout << "inside dot_sum of 2poly \n";
+        std::cout << "inside dot_op of 2poly \n";
         auto instr = child.NewInstr("dot_op_poly2");
         instr.SetDecode(m.state("child_state") == BvConst(2, 2));
 
@@ -88,7 +88,7 @@ void DefineTwoPolyChild(Ila& m) {
        
         instr.SetUpdate(byte_cnt, BvConst(0, 32));
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32)); 
-        instr.SetUpdate(final_sum, final_sum + mult);
+        instr.SetUpdate(final_sum, Add(final_sum, mult));
  
         
         // If the vector counter > number of sv then child_end else vector_sum_prep
