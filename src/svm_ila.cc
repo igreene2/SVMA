@@ -17,8 +17,7 @@ namespace svma {
             std::cout << "made svma\n";
 
             // inputs
-            // 0 - read, 1 - write
-            m.NewBvInput("mode", 1); // do i need this?
+            m.NewBvInput("mode", 1); 
             m.NewBvInput("addr_in", 32);
             m.NewBvInput("data_in", 32);
 
@@ -36,16 +35,17 @@ namespace svma {
             m.NewBvState("shift3", 8);
             m.NewBvState("cmd_bits", 16);
 
-            // the memory: 160 bytes - how big actually is this?
+            // the memory
             m.NewMemState("mem", 32, 32);
 
             // the output
             m.NewBvState("score", 32); 
-            // remember to write back this to the address of score
+            m.NewBvState("output_proc", 32);
+
 
             // internal state
             m.NewBvState("run_svma", 1);
-            m.NewBvState("interrupt_enable", 1); // do i need this?
+            m.NewBvState("interrupt_enable", 1); 
             m.NewBvState("reformulation", 1);
             m.NewBvState("kernel", 2);
             m.NewBvState("order_poly", 1);
@@ -54,8 +54,6 @@ namespace svma {
             m.NewBvState("child_state", 2);
         
             m.AddInit(m.state("child_state") == 0);
-            
-            // remember to write back done and output to the address in cmd instruction!
         
             std::cout << "declared all the state\n";
             m.SetValid(m.input("addr_in") >= 0x0000 & m.input("addr_in") < 0x25C2);
@@ -89,11 +87,8 @@ namespace svma {
         { // SVM_GAMMA (tau)
             std::cout << "inside  SVM_GAMMA \n";
             auto instr = m.NewInstr("SVM_GAMMA");
-            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x25AA)); // is addr_in meant to be a decode thing?
-            // what happens if this instruction is first? need some guarantee about which of these is first
-            // maybe and if then else in both? 
-            // might also just need to store as the size they come and then concat later?
-            // can i put data_in in something that isn't the same size?? like if its bigger than what I want from it? 
+            instr.SetDecode((m.input("mode") == 1) & (m.input("addr_in") == 0x25AA)); 
+
             instr.SetUpdate(m.state("tau"), m.input("data_in"));
             
 
@@ -188,8 +183,7 @@ namespace svma {
             instr.SetUpdate(m.state("kernel"), Extract(m.input("data_in"), 4, 3));
            
             instr.SetUpdate(m.state("order_poly"), SelectBit(m.input("data_in"), 2));
-         
-            // can i do stuff with cmd_bits here (above) so as not to do it in each child? 
+    
 
             std::cout << "going to the kiddies\n";
             DefineLinearChild(m);
@@ -212,6 +206,27 @@ namespace svma {
             instr.SetUpdate(m.state("mem"), update_memory_at_addrin);
             std::cout << "outside STORE_DATA\n";
         }
+
+        { // SVM_CMD_STATUS
+            std::cout << "inside SVM_CMD_STATUS_OUT\n";
+            auto instr = m.NewInstr("SVM_CMD_STATUS_OUT");
+            instr.SetDecode((m.input("mode") == 0) & (m.input("addr_in") == 0x25A0));
+
+            auto combined = Concat(m.state("done"), m.state("output"));
+            instr.SetUpdate(m.state("output_proc"), Concat(BvConst(0, 30), combined));
+
+        }
+
+        { // SVM_SCORE
+            std::cout << "inside SVM_SCORE\n";
+            auto instr = m.NewInstr("SVM_SCORE");
+            instr.SetDecode((m.input("mode") == 0) & (m.input("addr_in") == 0x25BA));
+
+            instr.SetUpdate(m.state("output_proc"), m.state("score"));
+
+        }
+
+
 
         return m;
     }

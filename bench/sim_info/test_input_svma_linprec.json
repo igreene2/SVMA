@@ -3,284 +3,331 @@
         {
             "_instr_No.": 0,
             "addr": "0x0",
-            "data": "0x3",
-            "mode": "1"
+            "data": 8.073825329589162,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 1,
             "addr": "0x1",
-            "data": "0x7",
-            "mode": "1"
+            "data": 4.828998344570888,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 2,
             "addr": "0x2",
-            "data": "0x2",
-            "mode": "1"
+            "data": 7.4913398134913365,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 3,
             "addr": "0x3",
-            "data": "0x5",
-            "mode": "1"
+            "data": 6.677414843340288,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 4,
             "addr": "0x4",
-            "data": "0x4",
-            "mode": "1"
+            "data": 7.776176862198129,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 5,
             "addr": "0x5",
-            "data": "0x3",
-            "mode": "1"
+            "data": 7.892483503787936,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 6,
             "addr": "0x6",
-            "data": "0x7",
-            "mode": "1"
+            "data": 9.459159480490026,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 7,
             "addr": "0x7",
-            "data": "0x3",
-            "mode": "1"
+            "data": 1.518093004554737,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 8,
             "addr": "0x8",
-            "data": "0x1",
-            "mode": "1"
+            "data": 0.6197086737662683,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 9,
             "addr": "0x9",
-            "data": "0x7",
-            "mode": "1"
+            "data": 0.7578582432645597,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 10,
             "addr": "0xa",
-            "data": "0x3",
-            "mode": "1"
+            "data": 3.161652755812101,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 11,
             "addr": "0xb",
-            "data": "0x5",
-            "mode": "1"
+            "data": 3.912835893723312,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 12,
             "addr": "0xc",
-            "data": "0x9",
-            "mode": "1"
+            "data": 2.2949265731512325,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 13,
             "addr": "0xd",
-            "data": "0x2",
-            "mode": "1"
+            "data": 0.39988536273277253,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 14,
             "addr": "0xe",
-            "data": "0x5",
-            "mode": "1"
+            "data": 7.996289596306227,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 15,
             "addr": "0xf",
-            "data": "0x4",
-            "mode": "1"
+            "data": 4.7665853260238915,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 16,
             "addr": "0x10",
-            "data": "0x1",
-            "mode": "1"
+            "data": 9.310137722413618,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 17,
             "addr": "0x11",
-            "data": "0x1",
-            "mode": "1"
+            "data": 3.785205689190639,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 19,
             "addr": "0x13",
-            "data": "0x3",
-            "mode": "1"
+            "data": 9.029464392041838,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 20,
             "addr": "0x14",
-            "data": "0x7",
-            "mode": "1"
+            "data": 2.757456478109297,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 21,
             "addr": "0x15",
-            "data": "0x2",
-            "mode": "1"
+            "data": 4.308714507744815,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 22,
             "addr": "0x16",
-            "data": "0x2",
-            "mode": "1"
+            "data": 1.5239859212899498,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 23,
             "addr": "0x17",
-            "data": "0x2",
-            "mode": "1"
+            "data": 4.494995064084427,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 24,
             "addr": "0x18",
-            "data": "0x5",
-            "mode": "1"
+            "data": 5.13796624544697,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 25,
             "addr": "0x19",
-            "data": "0x5",
-            "mode": "1"
+            "data": 7.125649199763503,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 26,
             "addr": "0x1a",
-            "data": "0x7",
-            "mode": "1"
+            "data": 3.2494238083726366,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 27,
             "addr": "0x1b",
-            "data": "0x6",
-            "mode": "1"
+            "data": 2.003266544339003,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 28,
             "addr": "0x1c",
-            "data": "0x4",
-            "mode": "1"
+            "data": 7.812083763040011,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 29,
             "addr": "0x1d",
-            "data": "0x1",
-            "mode": "1"
+            "data": 1.5213732918585388,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 30,
             "addr": "0x1e",
-            "data": "0x6",
-            "mode": "1"
+            "data": 9.073497276000456,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 31,
             "addr": "0x1f",
-            "data": "0x9",
-            "mode": "1"
+            "data": 3.5034926155364596,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 32,
             "addr": "0x20",
-            "data": "0x1",
-            "mode": "1"
+            "data": 6.667923799956604,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 33,
             "addr": "0x21",
-            "data": "0xa",
-            "mode": "1"
+            "data": 9.963780792092251,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 34,
             "addr": "0x22",
-            "data": "0x4",
-            "mode": "1"
+            "data": 8.091600929785693,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 35,
             "addr": "0x23",
-            "data": "0x0",
-            "mode": "1"
+            "data": 9.624628628743201,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 36,
             "addr": "0x24",
-            "data": "0x6",
-            "mode": "1"
+            "data": 1.9294707495230001,
+            "mode": "1",
+            "isfloat": "0"
         },
         {
             "_instr_No.": 58,
-            "addr": "0x000015A4",
+            "addr": "0x000025A4",
             "data": "0x00000000",
-            "mode": "1"
+            "mode": "1",
+            "isfloat": "1"
         },
         {
             "_instr_No.": 60,
-            "addr": "0x000015A8",
+            "addr": "0x000025A8",
             "data": "0x00000013",
-            "mode": "1"
+            "mode": "1",
+            "isfloat": "1"
         },
         {
             "_instr_No.": 61,
-            "addr": "0x000015AA",
+            "addr": "0x000025AA",
             "data": "0xffffffff",
-            "mode": "1"
+            "mode": "1",
+            "isfloat": "1"
         },
         {
             "_instr_No.": 62,
-            "addr": "0x000015AC",
+            "addr": "0x000025AC",
             "data": "0x00000000",
-            "mode": "1"
+            "mode": "1",
+            "isfloat": "1"
         },
         {
             "_instr_No.": 63,
-            "addr": "0x000015AE",
+            "addr": "0x000025AE",
             "data": "0xffffffff",
-            "mode": "1"
+            "mode": "1",
+            "isfloat": "1"
         },
         {
             "_instr_No.": 64,
-            "addr": "0x000015B0",
+            "addr": "0x000025B0",
             "data": "0x00000011",
-            "mode": "1"
+            "mode": "1",
+            "isfloat": "1"
         },
         {
             "_instr_No.": 65,
-            "addr": "0x000015B2",
+            "addr": "0x000025B2",
             "data": "0x00000001",
-            "mode": "1"
+            "mode": "1",
+            "isfloat": "1"
         },
         {
             "_instr_No.": 66,
-            "addr": "0x000015B4",
+            "addr": "0x000025B4",
             "data": "0x00000000",
-            "mode": "1"
+            "mode": "1",
+            "isfloat": "1"
         },
         {
             "_instr_No.": 67,
-            "addr": "0x000015B6",
+            "addr": "0x000025B6",
             "data": "0x00000000",
-            "mode": "1"
+            "mode": "1",
+            "isfloat": "1"
         },
         {
             "_instr_No.": 68,
-            "addr": "0x000015B8",
+            "addr": "0x000025B8",
             "data": "0x00000000",
-            "mode": "1"
+            "mode": "1",
+            "isfloat": "1"
         },
         {
             "_instr_No.": 69,
-            "addr": "0x000015A0",
+            "addr": "0x000025A0",
             "data": "0x000000A0",
-            "mode": "1"
+            "mode": "1",
+            "isfloat": "1"
         }
     ]
 }
