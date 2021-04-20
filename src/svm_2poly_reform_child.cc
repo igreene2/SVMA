@@ -34,13 +34,9 @@ void DefineTwoPolyReformChild(Ila& m) {
     child.AddInit(x_transpose_total == 0);
     child.AddInit(final_sum == 0);
 
-    std::cout << "defined all the kiddie state\n";
 
     // what we're trying to accomplish
     // tv_t * pc_matrix * tv - b - Th)
-
-    // first the dot product (be nice if i could have a function that does this)
-    // assume something exists called sv_addr and tv_addr
 
 
     // x_tranpose_matrix_multiply: load matrix and tv element, multipy, add to x_transpose_total
@@ -57,8 +53,7 @@ void DefineTwoPolyReformChild(Ila& m) {
         instr.SetUpdate(x_transpose_total, Add(x_transpose_total, mult));
         instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
-        // If the byte counter > sv dimensionality then dot_op else dot_sum
-        // look into == vs >
+        // If the byte counter == sv dimensionality then dot_op else dot_sum
         instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == (m.state("fv_dim") - 1), 
         BvConst(1, 2), BvConst(0, 2)));
 
@@ -80,7 +75,7 @@ void DefineTwoPolyReformChild(Ila& m) {
         instr.SetUpdate(byte_cnt, BvConst(0, 32));
         instr.SetUpdate(x_transpose_total, BvConst(0, 32));
         
-        // If the vector counter > number of sv then child_end else vector_sum_prep
+        // If the vector counter == number of sv then child_end else vector_sum_prep
         instr.SetUpdate(m.state("child_state"), Ite(tv_element_cnt == (m.state("fv_dim") - 1), 
         BvConst(2, 2), BvConst(0, 2)));
 
@@ -101,8 +96,6 @@ void DefineTwoPolyReformChild(Ila& m) {
         instr.SetUpdate(m.state("done"), BvConst(1, 1));
         instr.SetUpdate(m.state("child_state"), BvConst(0, 2));
         instr.SetUpdate(m.state("run_svma"), BvConst(0, 1));
-   
-        // SHIFT? truncation??
         
 
     }

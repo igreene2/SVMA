@@ -33,7 +33,7 @@ void DefineLinearChild(Ila& m) {
     child.AddInit(alpha == 0);
     child.AddInit(tv_test == 0);
 
-    std::cout << "defined all the kiddie state\n";
+    //std::cout << "defined all the kiddie state\n";
 
     // what we're trying to accomplish
     // sum_i(alpha_i(sv_i dot )tv - b - Th)
@@ -49,7 +49,6 @@ void DefineLinearChild(Ila& m) {
         instr.SetUpdate(dot_sum, BvConst(0, 32));
         instr.SetUpdate(tv_test, tv_addr);
 
-        std::cout << "inside vector_sum_prep past updates\n";   
         // move to dot_sum
         instr.SetUpdate(m.state("child_state"), BvConst(1, 2));
 
@@ -60,10 +59,8 @@ void DefineLinearChild(Ila& m) {
         std::cout << "inside dot_sum linear\n";
         auto instr = child.NewInstr("dot_sum_linear");
         instr.SetDecode(m.state("child_state") == BvConst(1, 2));
-        std::cout << "inside dot_sum linear\n";     
         auto tv_data = Load(m.state("mem"), tv_addr + byte_cnt);
         auto sv_data = Load(m.state("mem"), sv_addr + addr_cnt);
-        std::cout << "inside dot_sum linear\n";
         auto mult = Mult(tv_data, sv_data);
 
         instr.SetUpdate(dot_sum, Add(dot_sum, mult));
@@ -71,9 +68,7 @@ void DefineLinearChild(Ila& m) {
         instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
 
         // If the byte counter > sv dimensionality then dot_op else dot_sum
-        // look into == vs >
-        // probs gonna have to do a signed comparision uninterpreted function, but maybe == is sufficient
-        instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == m.state("fv_dim"), 
+        instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == m.state("fv_dim") - BvConst(1, 32), 
         BvConst(2, 2), BvConst(1, 2)));
 
     }
@@ -93,7 +88,7 @@ void DefineLinearChild(Ila& m) {
         instr.SetUpdate(byte_cnt, BvConst(0, 32));
       
         
-        // If the vector counter > number of sv then child_end else vector_sum_prep
+        // If the vector counter == number of sv then child_end else vector_sum_prep
         instr.SetUpdate(m.state("child_state"), Ite(vector_cnt == m.state("num_sv"), 
         BvConst(3, 2), BvConst(0, 2)));
 

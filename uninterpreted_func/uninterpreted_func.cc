@@ -10,34 +10,21 @@
 sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
 
 
-
   unsigned int i = mult1.to_uint();
   unsigned int ii = mult2.to_uint();
 
   float arg1 = (*(float*)&i);
   float arg2 = (*(float*)&ii);
-  
-
-  cout << "arg1and2\n";
-  cout << arg1 << " " << std::bitset<32>(arg1) << std::endl;
-  cout << "\n";
-  cout << arg2 << " " << std::bitset<32>(arg2) << std::endl;
-  cout << "\n";
-
 
   float rezzy = arg1 * arg2;
 
-  cout << "rezzy\n";
+  cout << "args mul\t" << arg1 << "\t" << arg2 << "\n";
+  cout << "rezzy mul\t";
   cout << rezzy;
   cout << "\n";
+
   
   unsigned int ires = *reinterpret_cast<unsigned int*>(&rezzy);
-
-
-  cout << "ires\n";
-  cout << ires;
-  cout << "\n";
-
   return ires;
 }
 
@@ -50,6 +37,11 @@ sc_biguint<32> SVMA::Sub(sc_biguint<32> sub1, sc_biguint<32> sub2) {
   float f2 = (*(float*)&sub2_s);
 
   float rezzy = f1 - f2;
+
+  cout << "args sub\t" << f1 << "\t" << f2 << "\n";
+  cout << "rezzy sub\n";
+  cout << rezzy;
+  cout << "\n";
 
   unsigned int ires = *reinterpret_cast<unsigned int*>(&rezzy);
 
@@ -68,6 +60,7 @@ sc_biguint<32> SVMA::Add(sc_biguint<32> sub1, sc_biguint<32> sub2) {
 
   float rezzy = f1 + f2;
 
+  cout << "args add\t" << f1 << "\t" << f2 << "\n";
   cout << "rezzy add\n";
   cout << rezzy;
   cout << "\n";
@@ -75,9 +68,6 @@ sc_biguint<32> SVMA::Add(sc_biguint<32> sub1, sc_biguint<32> sub2) {
 
   unsigned int ires = *reinterpret_cast<unsigned int*>(&rezzy);
 
-  cout << "ires add\n";
-  cout << ires;
-  cout << "\n";
   
   return ires;
 
@@ -98,19 +88,18 @@ sc_biguint<32> SVMA::Exponent(sc_biguint<32> exponent) {
 
 sc_biguint<32> SVMA::Shift(sc_biguint<32> base, sc_biguint<32> shiftamt) {
   
-  sc_bigint<32> base_s = base;
-  sc_bigint<32> shiftamt_s = shiftamt;  
+  unsigned int base_s = base.to_uint();
+  unsigned int shiftamt_s = shiftamt.to_uint();  
 
-  sc_bigint<32> base_shift = base_s >> shiftamt_s;
-  sc_biguint<32> result = base_shift;
+  unsigned int base_shift = base_s >> shiftamt_s;
 
-  return result;
+  return base_shift;
 
 }
 
 sc_biguint<32> SVMA::MultbyNegativeOne(sc_biguint<32> mult1) {
 
-  sc_bigint<32> arg1 = mult1.to_uint();
+  unsigned int arg1 = mult1.to_uint();
 
   float f2 = -1;
 

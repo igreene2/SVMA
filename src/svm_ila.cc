@@ -185,7 +185,6 @@ namespace svma {
             instr.SetUpdate(m.state("order_poly"), SelectBit(m.input("data_in"), 2));
     
 
-            std::cout << "going to the kiddies\n";
             DefineLinearChild(m);
             DefineLinearReformChild(m);
             DefineTwoPolyChild(m);

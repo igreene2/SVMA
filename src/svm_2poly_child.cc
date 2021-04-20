@@ -31,7 +31,6 @@ void DefineTwoPolyChild(Ila& m) {
     child.AddInit(dot_sum == 0);
     child.AddInit(addr_cnt == 0);
 
-    std::cout << "defined all the kiddie state\n";
 
     // what we're trying to accomplish: sum(sv_i dot tv + c)^2 * Ai - b - Th
 
@@ -40,12 +39,10 @@ void DefineTwoPolyChild(Ila& m) {
         std::cout << "inside vector_sum_prep 2poly\n";
         auto instr = child.NewInstr("vector_sum_prep_poly2");
         instr.SetDecode(m.state("child_state") == BvConst(0, 2));
-        std::cout << "inside vector_sum_prep 2poly past decode\n";
         
         instr.SetUpdate(vector_cnt, vector_cnt + BvConst(1, 32));
         instr.SetUpdate(dot_sum, BvConst(0, 32));
-
-        std::cout << "inside vector_sum_prep 2poly past updates\n";   
+ 
         // move to dot_sum
         instr.SetUpdate(m.state("child_state"), BvConst(1, 2));
 
@@ -66,9 +63,8 @@ void DefineTwoPolyChild(Ila& m) {
         instr.SetUpdate(byte_cnt, byte_cnt + BvConst(1, 32));
         instr.SetUpdate(addr_cnt, addr_cnt + BvConst(1, 32));
 
-        // If the byte counter > sv dimensionality then dot_op else dot_sum
-        // look into == vs >
-        instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == m.state("fv_dim"), 
+        // If the byte counter == sv dimensionality then dot_op else dot_sum
+        instr.SetUpdate(m.state("child_state"), Ite(byte_cnt == m.state("fv_dim") - BvConst(1, 32), 
         BvConst(2, 2), BvConst(1, 2)));
 
     }
@@ -91,7 +87,7 @@ void DefineTwoPolyChild(Ila& m) {
         instr.SetUpdate(final_sum, Add(final_sum, mult));
  
         
-        // If the vector counter > number of sv then child_end else vector_sum_prep
+        // If the vector counter == number of sv then child_end else vector_sum_prep
         instr.SetUpdate(m.state("child_state"), Ite(vector_cnt == m.state("num_sv"), 
         BvConst(3, 2), BvConst(0, 2)));
 

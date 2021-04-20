@@ -9,39 +9,22 @@
 
 sc_biguint<32> SVMA::Mult(sc_biguint<32> mult1, sc_biguint<32> mult2) {
 
-  cout << "mult1and2\n";
-  cout << mult1 << std::endl;
-  cout << "\n";
-  cout << mult2 << std::endl;
-  cout << "\n";
 
   unsigned int i = mult1.to_uint();
   unsigned int ii = mult2.to_uint();
 
   float arg1 = (*(float*)&i);
   float arg2 = (*(float*)&ii);
-  
-
-  cout << "arg1and2\n";
-  cout << arg1 << " " << std::bitset<32>(arg1) << std::endl;
-  cout << "\n";
-  cout << arg2 << " " << std::bitset<32>(arg2) << std::endl;
-  cout << "\n";
-
 
   float rezzy = arg1 * arg2;
 
-  cout << "rezzy\n";
+  cout << "args mul\t" << arg1 << "\t" << arg2 << "\n";
+  cout << "rezzy mul\t";
   cout << rezzy;
   cout << "\n";
+
   
   unsigned int ires = *reinterpret_cast<unsigned int*>(&rezzy);
-
-
-  cout << "ires\n";
-  cout << ires;
-  cout << "\n";
-
   return ires;
 }
 
@@ -55,6 +38,11 @@ sc_biguint<32> SVMA::Sub(sc_biguint<32> sub1, sc_biguint<32> sub2) {
 
   float rezzy = f1 - f2;
 
+  cout << "args sub\t" << f1 << "\t" << f2 << "\n";
+  cout << "rezzy sub\n";
+  cout << rezzy;
+  cout << "\n";
+
   unsigned int ires = *reinterpret_cast<unsigned int*>(&rezzy);
 
 
@@ -63,11 +51,6 @@ sc_biguint<32> SVMA::Sub(sc_biguint<32> sub1, sc_biguint<32> sub2) {
 }
 
 sc_biguint<32> SVMA::Add(sc_biguint<32> sub1, sc_biguint<32> sub2) {
-  cout << "add1and2\n";
-  cout << sub1  << std::endl;
-  cout << "\n";
-  cout << sub2  << std::endl;
-  cout << "\n";
 
   unsigned int sub1_s = sub1.to_uint();
   unsigned int sub2_s = sub2.to_uint();
@@ -77,6 +60,7 @@ sc_biguint<32> SVMA::Add(sc_biguint<32> sub1, sc_biguint<32> sub2) {
 
   float rezzy = f1 + f2;
 
+  cout << "args add\t" << f1 << "\t" << f2 << "\n";
   cout << "rezzy add\n";
   cout << rezzy;
   cout << "\n";
@@ -84,9 +68,6 @@ sc_biguint<32> SVMA::Add(sc_biguint<32> sub1, sc_biguint<32> sub2) {
 
   unsigned int ires = *reinterpret_cast<unsigned int*>(&rezzy);
 
-  cout << "ires add\n";
-  cout << ires;
-  cout << "\n";
   
   return ires;
 
